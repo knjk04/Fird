@@ -17,7 +17,7 @@ Language guidelines
 
 - ✔️ DO Use easily readable identifier names
 
-  For example, `HorizontalAligment` is easier to read than `AlignmentHorizontal`
+  For example, `HorizontalAlignment` is easier to read than `AlignmentHorizontal`.
 
 - ✔️ DO prefer meaningful variables over short variable names 
 
@@ -27,9 +27,9 @@ Language guidelines
 
 - ❌ DO NOT use Hungarian notation
 
-- ✔️ DO name boolean variables with an affirmative phrase (e.g. `CanJump` insetad of `CantJump`)
+- ✔️ DO name boolean variables with an affirmative phrase (e.g. `CanJump` instead of `CantJump`)
 
-## Using abbreviations and acryonyms
+## Using abbreviations and acronyms
 
 - ❌ DO NOT use abbreviations or contractions in identifier names
 
@@ -41,17 +41,17 @@ Language guidelines
 
 Good:
 ```c#
-String url;
+string url;
 ```
 
 Bad:
 ```c#
-String url;
+string URL;
 ```
 
 ## Avoiding Language-specific names
 
-- ❌ DO NOT use langugage-specific keywords for type names
+- ❌ DO NOT use language-specific keywords for type names
 
   For example, use `GetLength` over `GetInt`.
 
@@ -133,7 +133,7 @@ public void SetName(string name)
 
 ### Line length
 
-Lines should not exceed 100 characters
+Lines should not exceed 100 characters.
 
 ## Brace style
 
@@ -251,7 +251,7 @@ string message = "start game"; // good
 
 ## Unsigned data type
 
-In general, use int instead of unsigned types because `int` is popular in c#, so it is easier to work with other libraries when int is used.
+In general, use int instead of unsigned types because `int` is popular in c#, so it is easier to work with other libraries when an int is used.
 
 ## Arrays
 
