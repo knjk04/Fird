@@ -17,9 +17,9 @@ public class BirdCollisions : MonoBehaviour {
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Currently reloads scene, later update to move to Game Over screen
+        // Currently reloads scene
+        // TODO: later update to move to a Game Over panel
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log("Game Over");
     }
     
 }
