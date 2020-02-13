@@ -8,12 +8,16 @@ public class BirdMovement : MonoBehaviour
 	public Rigidbody2D RigidBody2D;
 	public float Speed;
 
+	public void Start() 
+	{
+
+	}
+
 	private void FixedUpdate()
 	{
 		float MoveVertical = Input.GetAxis("Vertical");
 		Vector2 movement = new Vector2(0.0f, MoveVertical);
 		RigidBody2D.velocity = Speed * movement;
-
 		RigidBody2D.AddForce(Vector3.down * 60f * RigidBody2D.mass);
 	}
 }
