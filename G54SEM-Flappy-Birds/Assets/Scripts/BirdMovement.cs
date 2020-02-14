@@ -19,7 +19,7 @@ public class BirdMovement : MonoBehaviour
 
     private void FixedUpdate()
 	{
-        if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1"))
+        if ((Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")))
         {
 
             RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
@@ -28,7 +28,6 @@ public class BirdMovement : MonoBehaviour
 
             if (!BirdTiltedUpwards)
             {
-                Debug.Log("Tilt because birdTiltedUpwards = " + BirdTiltedUpwards);
                 transform.eulerAngles = Vector3.forward * 25;
                 BirdTiltedUpwards = true;
             }
@@ -41,5 +40,5 @@ public class BirdMovement : MonoBehaviour
                 BirdTiltedUpwards = false;
             }
         }
-	}
+    }
 }
