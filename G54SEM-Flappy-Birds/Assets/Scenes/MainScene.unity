@@ -632,6 +632,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RigidBody2D: {fileID: 1640553518}
   Speed: 30
+  BirdVerticalVelocity: 0.75
+  BirdTiltedUpwards: 0
 --- !u!50 &1640553518
 Rigidbody2D:
   serializedVersion: 4

@@ -7,17 +7,38 @@ public class BirdMovement : MonoBehaviour
 	// ensure these are set in the inspector
 	public Rigidbody2D RigidBody2D;
 	public float Speed;
+    public float BirdVerticalVelocity;
+
+    private bool BirdTiltedUpwards;
+    private float BirdVerticalPosition;
 
 	public void Start() 
 	{
-
+        BirdTiltedUpwards = false;
 	}
 
-	private void FixedUpdate()
+    private void FixedUpdate()
 	{
-		float MoveVertical = Input.GetAxis("Vertical");
-		Vector2 movement = new Vector2(0.0f, MoveVertical);
-		RigidBody2D.velocity = Speed * movement;
-		RigidBody2D.AddForce(Vector3.down * 60f * RigidBody2D.mass);
-	}
+        if ((Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")))
+        {
+
+            RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
+
+            BirdVerticalPosition = RigidBody2D.position.y;
+
+            if (!BirdTiltedUpwards)
+            {
+                transform.eulerAngles = Vector3.forward * 25;
+                BirdTiltedUpwards = true;
+            }
+        }
+        else
+        {
+            if (RigidBody2D.position.y < BirdVerticalPosition)
+            {
+                transform.eulerAngles = Vector3.forward * -85;
+                BirdTiltedUpwards = false;
+            }
+        }
+    }
 }
