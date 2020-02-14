@@ -21,9 +21,10 @@ public class BirdMovement : MonoBehaviour
 	{
         if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1"))
         {
-            BirdVerticalPosition = RigidBody2D.position.y;
 
             RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
+
+            BirdVerticalPosition = RigidBody2D.position.y;
 
             if (!BirdTiltedUpwards)
             {
