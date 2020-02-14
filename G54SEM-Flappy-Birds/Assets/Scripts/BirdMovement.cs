@@ -9,7 +9,8 @@ public class BirdMovement : MonoBehaviour
 	public float Speed;
     public float BirdVerticalVelocity;
 
-    public bool BirdTiltedUpwards;
+    private bool BirdTiltedUpwards;
+    private float BirdVerticalPosition;
 
 	public void Start() 
 	{
@@ -20,6 +21,8 @@ public class BirdMovement : MonoBehaviour
 	{
         if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1"))
         {
+            BirdVerticalPosition = RigidBody2D.position.y;
+
             RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
 
             if (!BirdTiltedUpwards)
@@ -31,33 +34,11 @@ public class BirdMovement : MonoBehaviour
         }
         else
         {
-            transform.eulerAngles = Vector3.forward * -85;
-            BirdTiltedUpwards = false;
+            if (RigidBody2D.position.y < BirdVerticalPosition)
+            {
+                transform.eulerAngles = Vector3.forward * -85;
+                BirdTiltedUpwards = false;
+            }
         }
 	}
-
-    void Update()
-    {
-        /*
-        if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1"))
-        {
-            RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
-
-            if (!BirdTiltedUpwards)
-            {
-                Debug.Log("Tilt because birdTiltedUpwards = " + BirdTiltedUpwards);
-                transform.eulerAngles = Vector3.forward * 25;
-                BirdTiltedUpwards = true;
-            }
-        }
-        else
-        {
-            transform.eulerAngles = Vector3.forward * -85;
-            BirdTiltedUpwards = false;
-        }
-        */
-        
-
-
-    }
 }
