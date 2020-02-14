@@ -15,9 +15,9 @@ public class BirdMovement : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		float MoveVertical = Input.GetAxis("Vertical");
-		Vector2 movement = new Vector2(0.0f, MoveVertical);
-		RigidBody2D.velocity = Speed * movement;
-		RigidBody2D.AddForce(Vector3.down * 60f * RigidBody2D.mass);
+        if (Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1"))
+        {
+            RigidBody2D.velocity += new Vector2(0f, 0.75f);
+        }
 	}
 }
