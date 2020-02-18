@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
             return;
 
         score += 1;
-        Score.text = "Score: " + score.ToString();
+        Score = GetComponent<TextMeshProUGUI>();
     }
 
     public void GameOver()                          // game over function.

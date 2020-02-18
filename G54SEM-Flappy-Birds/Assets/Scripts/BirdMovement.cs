@@ -18,7 +18,7 @@ public class BirdMovement : MonoBehaviour
 	}
 
     private void FixedUpdate()
-	{
+    {
         if ((Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")))
         {
 

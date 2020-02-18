@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class BirdCollisions : MonoBehaviour {
 
+    public GameManager GameManager;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -17,9 +19,19 @@ public class BirdCollisions : MonoBehaviour {
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Currently reloads scene
-        // TODO: later update to move to a Game Over panel
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //Currently reloads scene
+        //TODO: later update to move to a Game Over panel
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
-    
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "score-box")
+        {
+            Debug.Log("update score");
+            GameManager.AddScore();
+        }
+    }
+
 }
