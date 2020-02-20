@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Score = GetComponent<TextMeshProUGUI>();
+        //Score = GetComponent<TextMeshProUGUI>();
     }
 
     void Awake()
@@ -41,13 +41,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddScore()                          // when the bird cross a obstacle, add score.
+    public void AddScore()                          
     {
-        if (gameOver)
+
+        //when the bird cross a obstacle, add score.
+        if (gameover)
             return;
 
-        score += 1;
-        Score = GetComponent<TextMeshProUGUI>();
+        score++;
+        Score.text = score.ToString();
     }
 
     public void GameOver()                          // game over function.

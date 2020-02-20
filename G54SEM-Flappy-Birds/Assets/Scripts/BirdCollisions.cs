@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class BirdCollisions : MonoBehaviour {
 
     public GameManager GameManager;
+    private Animator animator;
+    //private bool isDead = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,14 +24,19 @@ public class BirdCollisions : MonoBehaviour {
         //Currently reloads scene
         //TODO: later update to move to a Game Over panel
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //isDead = true;
+        //animator.settrigger("die");                        // change current animation clip to die
+
+        GameManager.GameOver();
 
     }
 
+
+    //this function should be called when the bird moves through the score box
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "score-box")
         {
-            Debug.Log("update score");
             GameManager.AddScore();
         }
     }
