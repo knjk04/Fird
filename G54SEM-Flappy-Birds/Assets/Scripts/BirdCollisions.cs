@@ -26,8 +26,17 @@ public class BirdCollisions : MonoBehaviour {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         //isDead = true;
         //animator.settrigger("die");                        // change current animation clip to die
-
-        GameManager.GameOver();
+        if (collision.gameObject.tag == "score-box")
+        {
+            Debug.Log("Log");
+            GameManager.AddScore();
+            //Destroy(collision.gameObject.FindWithTag("score-box"));
+        }
+        else
+        {
+            GameManager.GameOver();
+        }
+  
 
     }
 
@@ -35,8 +44,10 @@ public class BirdCollisions : MonoBehaviour {
     //this function should be called when the bird moves through the score box
     void OnTriggerExit2D(Collider2D other)
     {
+        Debug.Log("not score box");
         if (other.gameObject.tag == "score-box")
         {
+            Debug.Log("Log");
             GameManager.AddScore();
         }
     }

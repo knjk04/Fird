@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()                          // game over function.
     {
+        Debug.Log("over");
         gameover.SetActive(true);
         gameOver = true;
     }
