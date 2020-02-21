@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BirdCollisions : MonoBehaviour {
 
-    public GameManager GameManager;
+    public GameManager GameController;
     private Animator animator;
     //private bool isDead = false;
 
@@ -26,18 +26,7 @@ public class BirdCollisions : MonoBehaviour {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         //isDead = true;
         //animator.settrigger("die");                        // change current animation clip to die
-        if (collision.gameObject.tag == "score-box")
-        {
-            Debug.Log("Log");
-            GameManager.AddScore();
-            //Destroy(collision.gameObject.FindWithTag("score-box"));
-        }
-        else
-        {
-            GameManager.GameOver();
-        }
-  
-
+ 
     }
 
 
@@ -45,11 +34,18 @@ public class BirdCollisions : MonoBehaviour {
     void OnTriggerExit2D(Collider2D other)
     {
         Debug.Log("not score box");
-        if (other.gameObject.tag == "score-box")
-        {
+        Debug.Log("tag = " + other.gameObject.tag);
+
+        // if (other.gameObject.tag == "score-box")
+        if (other.gameObject.CompareTag("score-box"))
+            {
             Debug.Log("Log");
-            GameManager.AddScore();
+            if (GameController == null)
+            {
+                Debug.Log("GameController is null");
+            }
+
+            GameController.AddScore();
         }
     }
-
 }

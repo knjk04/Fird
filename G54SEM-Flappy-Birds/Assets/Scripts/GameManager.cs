@@ -8,13 +8,20 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
 
-    public static GameManager instance;             // single instance
+    // single instance
+    public static GameManager instance;
 
-    public GameObject gameover;                 // game over UI
-    public TextMeshProUGUI Score;                          // score text
+    // game over UI
+    public GameObject gameover;    
+    // score text
+    public TextMeshProUGUI Score;
 
-    private bool gameOver = false;                  // mark current game status
-    private int score = 0;                          // store score.
+    // mark current game status
+    private bool gameOver = false;
+    // store score.
+    private int score = 0;
+
+    public AudioSource PointSound;
 
     void Start()
     {
@@ -24,7 +31,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         if (instance == null)
-        {                     // set single instance
+        {
+            // set single instance
             instance = this;
         }
         else if (instance != null)
@@ -36,7 +44,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (gameOver == true && Input.GetMouseButtonDown(0))
-        {         // if gameover and click the picture, restart the game.
+        {         
+            // if gameover and click the picture, restart the game.
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
@@ -50,9 +59,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("log");
         score++;
         Score.text = score.ToString();
+
+        PointSound.Play();
     }
 
-    public void GameOver()                          // game over function.
+    public void GameOver()                          
     {
         Debug.Log("over");
         gameover.SetActive(true);

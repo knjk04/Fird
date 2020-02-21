@@ -4,9 +4,12 @@ using UnityEngine;
 using TMPro;
 
 public class isReady : MonoBehaviour {
+
+    // ensure these are all assigned in the inspector in Unity
     public GameObject Score;
     public Rigidbody2D birdRB;
-    
+    public AudioSource audio;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -21,6 +24,10 @@ public class isReady : MonoBehaviour {
             Score.SetActive(true);
             // introduce gravity and allow bird to fall
             birdRB.gravityScale = 1f;
+
+            // play background audio
+            audio.Play();
+            
            
         }  
 
