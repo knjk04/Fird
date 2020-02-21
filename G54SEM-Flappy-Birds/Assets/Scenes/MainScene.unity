@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 1640553520}
   m_Layer: 0
   m_Name: bluebird-downflap
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42464677a46cabf479c58f0585eb7801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManager: {fileID: 1731509061}
+  GameController: {fileID: 1731509061}
 --- !u!70 &1640553520
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -785,6 +785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1731509062}
   - component: {fileID: 1731509061}
+  - component: {fileID: 1731509064}
   - component: {fileID: 1731509063}
   m_Layer: 0
   m_Name: GameManager
@@ -806,6 +807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameover: {fileID: 1747226465}
   Score: {fileID: 421648227}
+  PointSound: {fileID: 1731509064}
 --- !u!4 &1731509062
 Transform:
   m_ObjectHideFlags: 0
@@ -833,6 +835,101 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1731509064
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1731509060}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 13d35b67457174646b22a6e9e51d501d, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1018,10 +1115,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipeSet:
   - {fileID: 1433047248357672, guid: 508f8d250d4b5cd46b5f3e20e475777d, type: 2}
-  - {fileID: 1335237469043336, guid: f0c03ab4c77a5fe448993ac6a04fa5f1, type: 2}
-  - {fileID: 1350443044787426, guid: 9f14f41b4e82fc3498b5356da3018bc3, type: 2}
-  - {fileID: 1779510554139076, guid: bf815e235aa07a54f802453c86955d3b, type: 2}
-  - {fileID: 1785929794864360, guid: b8782ae2f4d4c7144aa6effead86ed43, type: 2}
+  - {fileID: 1433047248357672, guid: 508f8d250d4b5cd46b5f3e20e475777d, type: 2}
+  - {fileID: 1433047248357672, guid: 508f8d250d4b5cd46b5f3e20e475777d, type: 2}
+  - {fileID: 1433047248357672, guid: 508f8d250d4b5cd46b5f3e20e475777d, type: 2}
+  - {fileID: 1433047248357672, guid: 508f8d250d4b5cd46b5f3e20e475777d, type: 2}
   spawnValues: {x: 0, y: 0}
   spawnWait: 2
 --- !u!4 &2097005610

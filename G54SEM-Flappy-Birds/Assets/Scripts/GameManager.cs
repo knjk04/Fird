@@ -11,15 +11,17 @@ public class GameManager : MonoBehaviour
     // single instance
     public static GameManager instance;
 
-
-    public GameObject gameover;     // game over UI
+    // game over UI
+    public GameObject gameover;    
     // score text
     public TextMeshProUGUI Score;
 
     // mark current game status
     private bool gameOver = false;
     // store score.
-    private int score = 0;                          
+    private int score = 0;
+
+    public AudioSource PointSound;
 
     void Start()
     {
@@ -57,6 +59,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("log");
         score++;
         Score.text = score.ToString();
+
+        PointSound.Play();
     }
 
     public void GameOver()                          
