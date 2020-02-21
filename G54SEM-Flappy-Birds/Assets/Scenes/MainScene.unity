@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: {fileID: 421648226}
   birdRB: {fileID: 1640553518}
+  audio: {fileID: 1731509063}
 --- !u!212 &167047839
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -828,7 +829,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d1df317f37386594999366d10cae02c6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
