@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class ScoreCollision : MonoBehaviour {
 
+	public GameManager GameController;
+
 	// Use this for initialization
 	void Start () {
-		
+		GameObject Object = GameObject.FindWithTag("GameController");
+		GameController = Object.GetComponent<GameManager>();
+
 	}
 	
 	// Update is called once per frame
@@ -14,11 +18,18 @@ public class ScoreCollision : MonoBehaviour {
 		
 	}
 
+    //this function should be called when the bird moves through the score box
 	void OnTriggerExit2D(Collider2D other)
 	{
-		Debug.Log("In OnTriggerExit in PipeCollision");
-		if (other.gameObject.tag == "Player") {
-			Debug.Log("Collision!");
+		if (other.gameObject.tag == "Player") 
+		{
+			if (GameController == null) {
+				Debug.Log("Game controller is null");
+			} 
+			else 
+			{
+				GameController.AddScore();
+			}
 		}
 	}
 }
