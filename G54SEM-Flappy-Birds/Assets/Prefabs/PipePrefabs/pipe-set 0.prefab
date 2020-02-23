@@ -74,6 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4637783076785150}
   - component: {fileID: 61225263923698304}
+  - component: {fileID: 114726187263772690}
   m_Layer: 0
   m_Name: Score box
   m_TagString: score-box
@@ -114,7 +115,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1896386557113308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.03, y: 1.42, z: 0}
+  m_LocalPosition: {x: 2.03, y: 1.42, z: 0.002211373}
   m_LocalScale: {x: 0.5, y: 1.4601562, z: 1}
   m_Children: []
   m_Father: {fileID: 4692487184814852}
@@ -127,7 +128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1433047248357672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5164905, y: 0.165, z: 0}
+  m_LocalPosition: {x: -7.675206, y: -0.14630227, z: 0}
   m_LocalScale: {x: 1, y: 1.02, z: 1}
   m_Children:
   - {fileID: 4625507701666532}
@@ -271,6 +272,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cc14fd2a65a7154fb1965f65bc3573e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114726187263772690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1896386557113308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3a28a99b93f01419b67768150bd8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114969660794321862

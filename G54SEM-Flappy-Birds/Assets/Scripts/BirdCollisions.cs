@@ -26,26 +26,60 @@ public class BirdCollisions : MonoBehaviour {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         //isDead = true;
         //animator.settrigger("die");                        // change current animation clip to die
+
+
+        // Debug.Log("OnCollisionEnter: not score box");
+
+        // // if (collision.gameObject.tag == "score-box")
+        // if (collision.gameObject.CompareTag("score-box"))
+        //     {
+        //     Debug.Log("Collision");
+        //     if (GameController == null)
+        //     {
+        //         Debug.Log("GameController is null");
+        //     }
+
+        //     GameController.AddScore();
+        // }
+
  
     }
 
 
     //this function should be called when the bird moves through the score box
-    void OnTriggerExit2D(Collider2D other)
+    public void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("not score box");
-        Debug.Log("tag = " + other.gameObject.tag);
+        // Debug.Log("not score box");
+        // Debug.Log("tag = " + other.gameObject.tag);
 
-        // if (other.gameObject.tag == "score-box")
-        if (other.gameObject.CompareTag("score-box"))
-            {
-            Debug.Log("Log");
-            if (GameController == null)
-            {
-                Debug.Log("GameController is null");
-            }
+        // // if (other.gameObject.tag == "score-box")
+        // if (other.gameObject.CompareTag("score-box"))
+        //     {
+        //     Debug.Log("Log");
+        //     if (GameController == null)
+        //     {
+        //         Debug.Log("GameController is null");
+        //     }
 
-            GameController.AddScore();
-        }
+        //     GameController.AddScore();
+        // }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // Debug.Log("not score box");
+        // Debug.Log("tag = " + other.gameObject.tag);
+
+        // // if (other.gameObject.tag == "score-box")
+        // if (other.gameObject.CompareTag("score-box"))
+        //     {
+        //     Debug.Log("Log");
+        //     if (GameController == null)
+        //     {
+        //         Debug.Log("GameController is null");
+        //     }
+
+        //     GameController.AddScore();
+        // }
     }
 }
