@@ -72,9 +72,10 @@ public class GameManager : MonoBehaviour
         //when the bird cross a obstacle, add score.
         //if (gameover)
         //    return;
-        Debug.Log("log");
+        Debug.Log("score: " + score);
         score++;
         Score.text = score.ToString();
+        Debug.Log("score: " + score);
     }
 
     public void GameOver()                          // game over function.

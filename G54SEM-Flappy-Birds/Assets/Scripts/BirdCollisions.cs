@@ -26,13 +26,11 @@ public class BirdCollisions : MonoBehaviour {
         //animator.settrigger("die");                        // change current animation clip to die
         if (collision.gameObject.tag == "score-box")
         {
-            Debug.Log("Log");
-            GameManager.AddScore();
-            //Destroy(collision.gameObject.FindWithTag("score-box"));
+           
         }
         else
         {
-            GameManager.GameOver();
+            GameController.GameOver();
         }
   
 
@@ -45,8 +43,6 @@ public class BirdCollisions : MonoBehaviour {
         Debug.Log("not score box");
         if (other.gameObject.tag == "score-box")
         {
-            Debug.Log("Log");
-            GameManager.AddScore();
         }
     }
 }
