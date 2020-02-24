@@ -882,6 +882,15 @@ Prefab:
       propertyPath: GameManager
       value: 
       objectReference: {fileID: 1731509061}
+    - target: {fileID: 1912697022461906, guid: 5ad12c9e595624faab7e99abbf2010dd, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50776328328290446, guid: 5ad12c9e595624faab7e99abbf2010dd,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ad12c9e595624faab7e99abbf2010dd, type: 2}
   m_IsPrefabAsset: 0
@@ -929,6 +938,15 @@ Prefab:
       propertyPath: GameManager
       value: 
       objectReference: {fileID: 1731509061}
+    - target: {fileID: 1490941192310492, guid: 56d3f0c17756c4392a7ad6ae93914e44, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50327729764016178, guid: 56d3f0c17756c4392a7ad6ae93914e44,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56d3f0c17756c4392a7ad6ae93914e44, type: 2}
   m_IsPrefabAsset: 0
@@ -1160,6 +1178,15 @@ Prefab:
       propertyPath: GameManager
       value: 
       objectReference: {fileID: 1731509061}
+    - target: {fileID: 1140692939618196, guid: d4f8968141ff4421db364f131186e54b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50491900719739576, guid: d4f8968141ff4421db364f131186e54b,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4f8968141ff4421db364f131186e54b, type: 2}
   m_IsPrefabAsset: 0
