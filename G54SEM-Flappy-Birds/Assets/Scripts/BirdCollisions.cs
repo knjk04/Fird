@@ -19,28 +19,17 @@ public class BirdCollisions : MonoBehaviour {
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Currently reloads scene
         //TODO: later update to move to a Game Over panel
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //isDead = true;
-        //animator.settrigger("die");                        // change current animation clip to die
-        if (collision.gameObject.tag == "score-box")
-        {
-           
-        }
-        else
+        if (collision.gameObject.tag != "score-box")
         {
             GameController.GameOver();
         }
-  
-
     }
 
 
     //this function should be called when the bird moves through the score box
     void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("not score box");
         if (other.gameObject.tag == "score-box")
         {
         }

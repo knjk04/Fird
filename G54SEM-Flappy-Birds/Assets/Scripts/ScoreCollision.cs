@@ -6,11 +6,10 @@ public class ScoreCollision : MonoBehaviour {
 
 	public GameManager GameController;
 
-	// Use this for initialization
 	void Start () {
+        // initialisation
 		GameObject Object = GameObject.FindWithTag("GameController");
 		GameController = Object.GetComponent<GameManager>();
-
 	}
 	
 	// Update is called once per frame
@@ -18,7 +17,7 @@ public class ScoreCollision : MonoBehaviour {
 		
 	}
 
-    //this function should be called when the bird moves through the score box
+    // function to add score once bird passes through gap in pipes
 	void OnTriggerExit2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "Player") 

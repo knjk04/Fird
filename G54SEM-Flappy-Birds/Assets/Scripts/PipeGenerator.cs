@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PipeGenerator : MonoBehaviour {
 
-    public GameObject[] pipeSet;
-    public Vector2 spawnValues;
-    public float spawnWait = 2;
-    public bool running = false;
-    public GameManager gameManager;
+    public GameObject[] PipeSet;
+    public Vector2 SpawnValues;
+    public float SpawnWait = 2;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Starts creation subroutine
         StartCoroutine(SpawnPipe());
     }
 
@@ -20,32 +19,23 @@ public class PipeGenerator : MonoBehaviour {
     {
         while (true)
         {
-            int pipeSpriteChoice = Random.Range(0, pipeSet.Length);
-            Vector2 spawnPosition = new Vector2(2.0f, 0.165f);
-            Quaternion rotation = Quaternion.identity;
-            GameObject pipe = Instantiate(pipeSet[pipeSpriteChoice], spawnPosition, rotation);
-            yield return new WaitForSeconds(spawnWait);
+            // Chooses random pipe height pair
+            int PipeSpriteChoice = Random.Range(0, PipeSet.Length);
+
+            // Setting parameters and creates pipe pair
+            Vector2 SpawnPosition = new Vector2(2.0f, 0.165f);
+            Quaternion Rotation = Quaternion.identity;
+            GameObject Pipe = Instantiate(PipeSet[PipeSpriteChoice], SpawnPosition, Rotation);
+
+            // Wait for x seconds (where x is spawnWait) before creating another set
+            yield return new WaitForSeconds(SpawnWait);
         }
     }
 
     // Update is called once per frame
-    void Update () {
-        /*if (Input.GetButtonDown("Fire1") && running == false)
-        {
-            Debug.Log("starting coroutine, running = " + running);
-            running = true;
-            StartCoroutine(SpawnPipe());
-
-        }
-        */
-        /*
-        if()
-        {
-            running = false;
-            StopCoroutine(SpawnPipe());
-            return;
-        }
-        */
+    void Update ()
+    {
+        
     }
 
 }

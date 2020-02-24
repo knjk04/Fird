@@ -6,6 +6,8 @@ public class DestroyPipeByTime : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        // destroys pipes after 8 seconds
         Destroy(gameObject, 8);
 	}
 	
