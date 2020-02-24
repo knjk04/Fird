@@ -7,11 +7,15 @@ public class PipeGenerator : MonoBehaviour {
     public GameObject[] pipeSet;
     public Vector2 spawnValues;
     public float spawnWait = 2;
+    public bool running = false;
+    public GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
-    { 
+    {
         StartCoroutine(SpawnPipe());
     }
+
     IEnumerator SpawnPipe()
     {
         while (true)
@@ -26,7 +30,22 @@ public class PipeGenerator : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
-	}
+        /*if (Input.GetButtonDown("Fire1") && running == false)
+        {
+            Debug.Log("starting coroutine, running = " + running);
+            running = true;
+            StartCoroutine(SpawnPipe());
+
+        }
+        */
+        /*
+        if()
+        {
+            running = false;
+            StopCoroutine(SpawnPipe());
+            return;
+        }
+        */
+    }
 
 }
