@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public Rigidbody2D birdRB;
     public TextMeshProUGUI GameOverScore;
+    public TextMeshProUGUI HighScoreUI;
 
 
     private bool GameOver = false;
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
     public AudioSource BackgroundAudio;
 
     private int PlayerScore = 0;
+    private int HighScore = 0;
+
     public AudioSource PointSound;
     
 
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour
 
         //Score = GetComponent<TextMeshProUGUI>();
         GameOverScore.enabled = false;
+        HighScoreUI.enabled = false;
     }
 
     void Awake()
@@ -65,21 +69,33 @@ public class GameManager : MonoBehaviour
         // Start game on click 
         if (Input.GetButtonDown("Fire1") && Started == false)
         {
-            Started = true;
-            // Create scene and show score
-            GetReadyPanel.SetActive(false);
-            ScorePanel.SetActive(true);
-
-            // Introduce gravity and allow bird to fall
-            BirdRigidBody.gravityScale = 1f;
-
-            BackgroundAudio.Play();
-
-            // Start pipe generation
-            Vector2 spawnPosition = new Vector2(0.0f, 0.0f);
-            Quaternion rotation = Quaternion.identity;
-            PipeScript = Instantiate(PipeGenerator, spawnPosition, rotation);
+            SetupGame();
         }
+    }
+
+    void SetupGame()
+    {
+        Started = true;
+        // Create scene and show score
+        GetReadyPanel.SetActive(false);
+        ScorePanel.SetActive(true);
+
+        // Introduce gravity and allow bird to fall
+        BirdRigidBody.gravityScale = 1f;
+
+        if (BackgroundAudio != null)
+        {
+            BackgroundAudio.Play();
+        }
+        else
+        {
+            Debug.Log("Background audio is null");
+        }
+
+        // Start pipe generation
+        Vector2 spawnPosition = new Vector2(0.0f, 0.0f);
+        Quaternion rotation = Quaternion.identity;
+        PipeScript = Instantiate(PipeGenerator, spawnPosition, rotation);
     }
 
     public void AddScore()                          
@@ -88,7 +104,15 @@ public class GameManager : MonoBehaviour
         // Changes score displayed to user
         ScoreUI.text = PlayerScore.ToString();
 
-        PointSound.Play();
+        if (PointSound != null)
+        {
+            PointSound.Play();
+        }
+        else
+        {
+            Debug.Log("Point sound is null");
+        }
+        
 
     }
 
@@ -100,8 +124,31 @@ public class GameManager : MonoBehaviour
         Started = false;
         // Stop pipe creation script
         Destroy(PipeScript);
-        Score.enabled = false;
-        GameOverScore.text = Score.text;
+        ScoreUI.enabled = false;
+
+       
+        GameOverScore.text = ScoreUI.text;
         GameOverScore.enabled = true;
+        HighScoreUI.enabled = true;
+
+        if (SetHighScore())
+        {
+            HighScoreUI.text = ScoreUI.text;
+        }
+        else
+        {
+            HighScoreUI.text = HighScore.ToString();
+        }
+
+    }
+
+    bool SetHighScore()
+    {
+        if (HighScore < PlayerScore)
+        {
+            HighScore = PlayerScore;
+            return true;
+        }
+        return false;
     }
 }
