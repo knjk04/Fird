@@ -7,34 +7,40 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-
-    public static GameManager instance;             // single instance
-
-    public GameObject gameover;                 // game over UI
-    public TextMeshProUGUI Score;                          // score text
-    public GameObject pipeGenerator;
+    // single instance
+    public static GameManager GameInstance;
+    public GameObject GameOverPanel;
+    // score text
+    public TextMeshProUGUI ScoreUI;
+    // pipe generation script
+    public GameObject PipeGenerator;
     public GameObject PipeScript;
-    public GameObject ScoreGO;
+ 
+    public GameObject ScorePanel;
     public GameObject GetReadyPanel;
-    public Rigidbody2D birdRB;
+    public Rigidbody2D BirdRigidBody;
 
+    private bool GameOver = false;
+    // used to handle start of game event
+    private bool Started = false;
+    public AudioSource BackgroundAudio;
 
-    private bool gameOver = false;                  // mark current game status
-    private bool started = false;
-    private int score = 0;                          // store score.
+    private int PlayerScore = 0;
+    public AudioSource PointSound;
+    
 
     void Start()
     {
-        //Score = GetComponent<TextMeshProUGUI>();
     }
 
     void Awake()
     {
-        if (instance == null)
-        {                     // set single instance
-            instance = this;
+        if (GameInstance == null)
+        {
+            // Set single instance
+            GameInstance = this;
         }
-        else if (instance != null)
+        else if (GameInstance != null)
         {
             Destroy(gameObject);
         }
@@ -42,48 +48,49 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (gameOver == true && Input.GetMouseButtonDown(0))
-        {         // if gameover and click the picture, restart the game.
+        if (GameOver == true && Input.GetMouseButtonDown(0))
+        {   
+            // If gameover and user clicks, restart the game.
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        //start game 
-        if (Input.GetButtonDown("Fire1") && started == false)
+        // Start game on click 
+        if (Input.GetButtonDown("Fire1") && Started == false)
         {
-            started = true;
-            // create scene and show score
+            Started = true;
+            // Create scene and show score
             GetReadyPanel.SetActive(false);
-            ScoreGO.SetActive(true);
-            // introduce gravity and allow bird to fall
-            birdRB.gravityScale = 1f;
+            ScorePanel.SetActive(true);
 
-            // start pipe generation
+            // Introduce gravity and allow bird to fall
+            BirdRigidBody.gravityScale = 1f;
 
+            BackgroundAudio.Play();
+
+            // Start pipe generation
             Vector2 spawnPosition = new Vector2(0.0f, 0.0f);
             Quaternion rotation = Quaternion.identity;
-            PipeScript = Instantiate(pipeGenerator, spawnPosition, rotation);
-
+            PipeScript = Instantiate(PipeGenerator, spawnPosition, rotation);
         }
     }
 
     public void AddScore()                          
     {
+        PlayerScore++;
+        // Changes score displayed to user
+        ScoreUI.text = PlayerScore.ToString();
 
-        //when the bird cross a obstacle, add score.
-        //if (gameover)
-        //    return;
-        Debug.Log("score: " + score);
-        score++;
-        Score.text = score.ToString();
-        Debug.Log("score: " + score);
+        PointSound.Play();
+
     }
 
-    public void GameOver()                          // game over function.
+    public void EndGame()                          
     {
-        Debug.Log("over");
-        gameover.SetActive(true);
-        gameOver = true;
-        started = false;
+        // Handles logic when game finishes (bird has crashed)
+        GameOverPanel.SetActive(true);
+        GameOver = true;
+        Started = false;
+        // Stop pipe creation script
         Destroy(PipeScript);
     }
 }
