@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject ScoreGO;
     public GameObject GetReadyPanel;
     public Rigidbody2D birdRB;
+    public TextMeshProUGUI GameOverScore;
 
 
     private bool gameOver = false;                  // mark current game status
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //Score = GetComponent<TextMeshProUGUI>();
+        GameOverScore.enabled = false;
     }
 
     void Awake()
@@ -85,5 +87,8 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         started = false;
         Destroy(PipeScript);
+        Score.enabled = false;
+        GameOverScore.text = Score.text;
+        GameOverScore.enabled = true;
     }
 }
