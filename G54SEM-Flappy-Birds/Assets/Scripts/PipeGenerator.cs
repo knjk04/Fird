@@ -25,6 +25,12 @@ public class PipeGenerator : MonoBehaviour {
             }
             else
             {
+
+                if (PipeSet == null)
+                {
+                    Debug.Log("pipe set is null");
+                }
+
                 // Choose random pipe set
                 int PipeSpriteChoice = Random.Range(0, PipeSet.Length);
 

@@ -7,21 +7,23 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-
-    public static GameManager GameInstance;         // single instance
-
-    public GameObject GameOverPanel;                // game over UI
-    public TextMeshProUGUI ScoreUI;                 // score text
-    public GameObject PipeGenerator;                // pipe generation script
+    // single instance
+    public static GameManager GameInstance;
+    public GameObject GameOverPanel;
+    // score text
+    public TextMeshProUGUI ScoreUI;
+    // pipe generation script
+    public GameObject PipeGenerator;
     public GameObject PipeScript;
-    public GameObject ScorePanel;                   // score
-    public GameObject GetReadyPanel;                // Welecome panel
-    public Rigidbody2D BirdRigidBody;               // bird rigidbody object
+ 
+    public GameObject ScorePanel;
+    public GameObject GetReadyPanel;
+    public Rigidbody2D BirdRigidBody;
 
-
-    private bool GameOverBool = false;              // mark current game status
-    private bool Started = false;                   // used to handle start of game event
-    private int ScoreInt = 0;                       // store score.
+    private bool GameOver = false;
+    // used to handle start of game event
+    private bool Started = false;
+    private int PlayerScore = 0;                       
 
     void Start()
     {
@@ -42,8 +44,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (GameOverBool == true && Input.GetMouseButtonDown(0))
-        {   // If gameover and user clicks, restart the game.
+        if (GameOver == true && Input.GetMouseButtonDown(0))
+        {   
+            // If gameover and user clicks, restart the game.
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
@@ -67,16 +70,16 @@ public class GameManager : MonoBehaviour
 
     public void AddScore()                          
     {
-        ScoreInt++;
+        PlayerScore++;
         // Changes score displayed to user
-        ScoreUI.text = ScoreInt.ToString();
+        ScoreUI.text = PlayerScore.ToString();
     }
 
     public void GameOver()                          
     {
         // Handles logic when game finishes (bird has crashed)
         GameOverPanel.SetActive(true);
-        GameOverBool = true;
+        GameOver = true;
         Started = false;
         // Stop pipe creation script
         Destroy(PipeScript);

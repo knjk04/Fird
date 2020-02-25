@@ -22,10 +22,4 @@ public class EnvironmentGenerator : MonoBehaviour {
             GameObject Env = Instantiate(Envs[PipeSpriteChoice], SpawnPosition, Rotation);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

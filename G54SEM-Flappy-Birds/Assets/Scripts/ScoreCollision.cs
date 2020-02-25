@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class ScoreCollision : MonoBehaviour {
 
-	public GameManager GameController;
+	private GameManager GameController;
 
 	void Start () {
         // initialisation
 		GameObject Object = GameObject.FindWithTag("GameController");
 		GameController = Object.GetComponent<GameManager>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
     // function to add score once bird passes through gap in pipes
