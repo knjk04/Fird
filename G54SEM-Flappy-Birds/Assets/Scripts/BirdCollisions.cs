@@ -22,7 +22,7 @@ public class BirdCollisions : MonoBehaviour {
         //TODO: later update to move to a Game Over panel
         if (collision.gameObject.tag != "score-box")
         {
-            GameController.GameOver();
+            GameController.EndGame();
         }
     }
 

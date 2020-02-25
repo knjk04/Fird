@@ -23,7 +23,11 @@ public class GameManager : MonoBehaviour
     private bool GameOver = false;
     // used to handle start of game event
     private bool Started = false;
-    private int PlayerScore = 0;                       
+    public AudioSource BackgroundAudio;
+
+    private int PlayerScore = 0;
+    public AudioSource PointSound;
+    
 
     void Start()
     {
@@ -61,6 +65,8 @@ public class GameManager : MonoBehaviour
             // Introduce gravity and allow bird to fall
             BirdRigidBody.gravityScale = 1f;
 
+            BackgroundAudio.Play();
+
             // Start pipe generation
             Vector2 spawnPosition = new Vector2(0.0f, 0.0f);
             Quaternion rotation = Quaternion.identity;
@@ -73,9 +79,12 @@ public class GameManager : MonoBehaviour
         PlayerScore++;
         // Changes score displayed to user
         ScoreUI.text = PlayerScore.ToString();
+
+        PointSound.Play();
+
     }
 
-    public void GameOver()                          
+    public void EndGame()                          
     {
         // Handles logic when game finishes (bird has crashed)
         GameOverPanel.SetActive(true);
