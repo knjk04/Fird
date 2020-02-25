@@ -628,9 +628,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55cb0baebe9649342982a5f7ff695419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  envs:
-  - {fileID: 1424475855651972, guid: dd44c5591bacd9741ae9fd0b0d69144c, type: 2}
-  - {fileID: 1099394559373668, guid: c7f335bdb2e64584b93207e041d3206d, type: 2}
+  Envs:
+  - {fileID: 1731509060}
+  - {fileID: 1731509060}
 --- !u!4 &1477865252
 Transform:
   m_ObjectHideFlags: 0
@@ -877,14 +877,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18115b5c47e34f74cba7805c7a123040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameover: {fileID: 1747226465}
-  Score: {fileID: 421648227}
-  pipeGenerator: {fileID: 1853079527007858, guid: 7772fdeddb4b24dc59c7f540472841f2,
-    type: 2}
+  GameOverPanel: {fileID: 0}
+  ScoreUI: {fileID: 0}
+  PipeGenerator: {fileID: 0}
   PipeScript: {fileID: 0}
-  ScoreGO: {fileID: 421648226}
+  ScorePanel: {fileID: 0}
   GetReadyPanel: {fileID: 167047836}
-  birdRB: {fileID: 1640553518}
+  BirdRigidBody: {fileID: 0}
 --- !u!4 &1731509062
 Transform:
   m_ObjectHideFlags: 0

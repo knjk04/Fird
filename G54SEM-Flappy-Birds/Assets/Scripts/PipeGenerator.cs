@@ -19,23 +19,23 @@ public class PipeGenerator : MonoBehaviour {
     {
         while (true)
         {
-            // Chooses random pipe height pair
-            int PipeSpriteChoice = Random.Range(0, PipeSet.Length);
+            if (PipeSet.Length == 0)
+            {
+                Debug.Log("Ensure PipeSet is initialised");
+            }
+            else
+            {
+                // Choose random pipe set
+                int PipeSpriteChoice = Random.Range(0, PipeSet.Length);
 
-            // Setting parameters and creates pipe pair
-            Vector2 SpawnPosition = new Vector2(2.0f, 0.165f);
-            Quaternion Rotation = Quaternion.identity;
-            GameObject Pipe = Instantiate(PipeSet[PipeSpriteChoice], SpawnPosition, Rotation);
+                // Set parameters and create pipe pair
+                Vector2 SpawnPosition = new Vector2(2.0f, 0.165f);
+                Quaternion Rotation = Quaternion.identity;
+                GameObject Pipe = Instantiate(PipeSet[PipeSpriteChoice], SpawnPosition, Rotation);
 
-            // Wait for x seconds (where x is spawnWait) before creating another set
-            yield return new WaitForSeconds(SpawnWait);
+                // Wait for x seconds (where x is spawnWait) before creating another set
+                yield return new WaitForSeconds(SpawnWait);
+            }
         }
     }
-
-    // Update is called once per frame
-    void Update ()
-    {
-        
-    }
-
 }
