@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PipeGenerator : MonoBehaviour {
 
+    // Ensure the following are initialised in the inspector
     public GameObject[] PipeSet;
     public Vector2 SpawnValues;
-    public float SpawnWait = 2;
+    public float SpawnWait;
 
     // Start is called before the first frame update
     void Start()
