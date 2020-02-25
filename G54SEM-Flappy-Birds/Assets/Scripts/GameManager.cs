@@ -18,7 +18,12 @@ public class GameManager : MonoBehaviour
  
     public GameObject ScorePanel;
     public GameObject GetReadyPanel;
+
     public Rigidbody2D BirdRigidBody;
+
+    public Rigidbody2D birdRB;
+    public TextMeshProUGUI GameOverScore;
+
 
     private bool GameOver = false;
     // used to handle start of game event
@@ -31,6 +36,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+
+        //Score = GetComponent<TextMeshProUGUI>();
+        GameOverScore.enabled = false;
     }
 
     void Awake()
@@ -92,5 +100,8 @@ public class GameManager : MonoBehaviour
         Started = false;
         // Stop pipe creation script
         Destroy(PipeScript);
+        Score.enabled = false;
+        GameOverScore.text = Score.text;
+        GameOverScore.enabled = true;
     }
 }
