@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     // single instance
     public static GameManager GameInstance;
+
     public GameObject GameOverPanel;
     // score text
     public TextMeshProUGUI ScoreUI;
@@ -27,6 +28,9 @@ public class GameManager : MonoBehaviour
 
 
     private bool GameOver = false;
+    //private bool GameOver;
+
+
     // used to handle start of game event
     private bool Started = false;
     public AudioSource BackgroundAudio;
@@ -35,46 +39,53 @@ public class GameManager : MonoBehaviour
     private int HighScore = 0;
 
     public AudioSource PointSound;
-    
+
+    public Button PlayButton;
+
 
     void Start()
     {
-
-        //Score = GetComponent<TextMeshProUGUI>();
         GameOverScore.enabled = false;
         HighScoreUI.enabled = false;
+        //GameOver = false;
     }
 
     void Awake()
     {
-        if (GameInstance == null)
+        if (GameInstance != null && GameInstance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
         {
             // Set single instance
             GameInstance = this;
         }
-        else if (GameInstance != null)
-        {
-            Destroy(gameObject);
+    }
+
+    public static GameManager GetInstance
+    {
+        get {
+            return GameInstance;
         }
     }
 
     void Update()
     {
-        if (GameOver == true && Input.GetMouseButtonDown(0))
-        {   
-            // If gameover and user clicks, restart the game.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
         // Start game on click 
-        if (Input.GetButtonDown("Fire1") && Started == false)
+        if (!GameOver && (Input.GetButtonDown("Fire1") && Started == false))
         {
+            Debug.Log("User is ready");
             SetupGame();
         }
     }
 
     void SetupGame()
     {
+
+        PlayButton.gameObject.SetActive(false);
+
         Started = true;
         // Create scene and show score
         GetReadyPanel.SetActive(false);
@@ -98,6 +109,11 @@ public class GameManager : MonoBehaviour
         PipeScript = Instantiate(PipeGenerator, spawnPosition, rotation);
     }
 
+    public void RunGame()
+    {
+        Debug.Log("Run game");
+    }
+
     public void AddScore()                          
     {
         PlayerScore++;
@@ -118,6 +134,9 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()                          
     {
+        Debug.Log("in end game");
+        
+
         // Handles logic when game finishes (bird has crashed)
         GameOverPanel.SetActive(true);
         GameOver = true;
@@ -139,7 +158,7 @@ public class GameManager : MonoBehaviour
         {
             HighScoreUI.text = HighScore.ToString();
         }
-
+        PlayButton.gameObject.SetActive(true);
     }
 
     bool SetHighScore()
@@ -150,5 +169,11 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public bool IsGameOver()
+    {
+        Debug.Log("GameOver = " + GameOver);
+        return GameOver;
     }
 }

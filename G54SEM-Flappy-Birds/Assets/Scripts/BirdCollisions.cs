@@ -22,16 +22,8 @@ public class BirdCollisions : MonoBehaviour {
         //TODO: later update to move to a Game Over panel
         if (collision.gameObject.tag != "score-box")
         {
+            Debug.Log("Collision so end the game");
             GameController.EndGame();
-        }
-    }
-
-
-    //this function should be called when the bird moves through the score box
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "score-box")
-        {
         }
     }
 }

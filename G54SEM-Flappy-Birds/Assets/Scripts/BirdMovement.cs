@@ -13,6 +13,8 @@ public class BirdMovement : MonoBehaviour
     private bool BirdTiltedUpwards;
     private float BirdVerticalPosition;
 
+    public GameManager GameController;
+
 	public void Start() 
 	{
         BirdTiltedUpwards = false;
@@ -20,27 +22,34 @@ public class BirdMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // move bird up when user presses
-        if ((Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")))
+        if (!GameController.IsGameOver())
         {
-            RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
-
-            BirdVerticalPosition = RigidBody2D.position.y;
-
-            // if bird is falling, change direction
-            if (!BirdTiltedUpwards)
+            // move bird up when user presses
+            if ((Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")))
             {
-                transform.eulerAngles = Vector3.forward * 25;
-                BirdTiltedUpwards = true;
+                RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
+
+                BirdVerticalPosition = RigidBody2D.position.y;
+
+                // if bird is falling, change direction
+                if (!BirdTiltedUpwards)
+                {
+                    transform.eulerAngles = Vector3.forward * 25;
+                    BirdTiltedUpwards = true;
+                }
+            }
+            else
+            {
+                if (RigidBody2D.position.y < BirdVerticalPosition)
+                {
+                    transform.eulerAngles = Vector3.forward * -85;
+                    BirdTiltedUpwards = false;
+                }
             }
         }
         else
         {
-            if (RigidBody2D.position.y < BirdVerticalPosition)
-            {
-                transform.eulerAngles = Vector3.forward * -85;
-                BirdTiltedUpwards = false;
-            }
+            //Debug.Log("Bird should not move because the game is over");
         }
     }
 }
