@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour
 
     private void RestartGame()
     {
+        Debug.Log("GmaeOver panel should not showing");
         GameOverPanel.SetActive(false);
         GetReadyPanel.SetActive(true);
         ScorePanel.SetActive(true);
@@ -110,6 +111,11 @@ public class GameManager : MonoBehaviour
 
         Bird.ResetBird();
         BirdRigidBody.gravityScale = 0f;
+
+        PlayerScore = 0;
+        ScoreUI.text = PlayerScore.ToString();
+        ScoreUI.enabled = true;
+        
 
 
 
