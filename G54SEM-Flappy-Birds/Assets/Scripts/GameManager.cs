@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI ScoreUI;
     public TextMeshProUGUI GameOverScore;
     public TextMeshProUGUI HighScoreUI;
+    public BirdMovement Bird;
 
     public GameObject PipeGenerator;
     private GameObject PipeScript;
@@ -24,10 +25,6 @@ public class GameManager : MonoBehaviour
     public GameObject GetReadyPanel;
 
     public Rigidbody2D BirdRigidBody;
-
-    public Rigidbody2D birdRB;
-    
-
 
     private bool GameOver = false;
 
@@ -76,7 +73,6 @@ public class GameManager : MonoBehaviour
 
     void SetupGame()
     {
-
         PlayButton.gameObject.SetActive(false);
 
         Started = true;
@@ -102,9 +98,29 @@ public class GameManager : MonoBehaviour
         PipeScript = Instantiate(PipeGenerator, spawnPosition, rotation);
     }
 
+    private void RestartGame()
+    {
+        GameOverPanel.SetActive(false);
+        GetReadyPanel.SetActive(true);
+        ScorePanel.SetActive(true);
+        PlayButton.gameObject.SetActive(false);
+
+        GameOverScore.enabled = false;
+        HighScoreUI.enabled = false;
+
+        Bird.ResetBird();
+        BirdRigidBody.gravityScale = 0f;
+
+
+
+
+        GameOver = false;
+    }
+
     public void RunGame()
     {
         Debug.Log("Run game");
+        RestartGame();
     }
 
     public void AddScore()                          

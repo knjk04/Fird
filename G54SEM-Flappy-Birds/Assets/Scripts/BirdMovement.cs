@@ -15,10 +15,16 @@ public class BirdMovement : MonoBehaviour
 
     //public GameManager GameController;
 
-	public void Start() 
+    private Vector3 BirdTransform;
+    //private Quaternion BirdRotation;
+
+    private float RotationSpeed = 1f;
+
+    public void Start() 
 	{
         BirdTiltedUpwards = false;
-	}
+        BirdTransform = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    }
 
     private void FixedUpdate()
     {
@@ -34,21 +40,21 @@ public class BirdMovement : MonoBehaviour
 
 				BirdVerticalPosition = RigidBody2D.position.y;
 
-				// if bird is falling, change direction
-				if (!BirdTiltedUpwards)
-				{
-					transform.eulerAngles = Vector3.forward * 25;
-					BirdTiltedUpwards = true;
-				}
-			}
+                // if bird is falling, change direction
+                if (!BirdTiltedUpwards)
+                {
+                    transform.eulerAngles = Vector3.forward * 25;
+                    BirdTiltedUpwards = true;
+                }
+            }
 			else
 			{
-				if (RigidBody2D.position.y < BirdVerticalPosition)
-				{
-					transform.eulerAngles = Vector3.forward * -85;
-					BirdTiltedUpwards = false;
-				}
-			}
+                if (RigidBody2D.position.y < BirdVerticalPosition)
+                {
+                    transform.eulerAngles = Vector3.forward * -85;
+                    BirdTiltedUpwards = false;
+                }
+            }
         }
         else
         {
@@ -58,10 +64,12 @@ public class BirdMovement : MonoBehaviour
         }
     }
 
-    public void DestroyBird()
+    public void ResetBird()
     {
-        //Debug.Log("Destroy the bird");
-        //Destroy(gameObject);
-        //DestroyImmediate(gameObject);
+        gameObject.transform.position = BirdTransform;
+        transform.rotation = Quaternion.identity;
+        
     }
+
+
 }
