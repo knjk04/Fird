@@ -64,13 +64,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static GameManager GetInstance
-    {
-        get {
-            return GameInstance;
-        }
-    }
-
     void Update()
     {
         // Start game on click 
@@ -173,7 +166,7 @@ public class GameManager : MonoBehaviour
 
     public bool IsGameOver()
     {
-        Debug.Log("GameOver = " + GameOver);
+        //Debug.Log("GameOver = " + GameOver);
         return GameOver;
     }
 }

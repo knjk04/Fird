@@ -245,15 +245,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOverPanel: {fileID: 0}
   ScoreUI: {fileID: 0}
+  GameOverScore: {fileID: 0}
+  HighScoreUI: {fileID: 0}
   PipeGenerator: {fileID: 1853079527007858, guid: 7772fdeddb4b24dc59c7f540472841f2,
     type: 2}
-  PipeScript: {fileID: 0}
   ScorePanel: {fileID: 0}
   GetReadyPanel: {fileID: 0}
   BirdRigidBody: {fileID: 0}
   birdRB: {fileID: 0}
-  GameOverScore: {fileID: 0}
-  HighScoreUI: {fileID: 0}
   BackgroundAudio: {fileID: 82626872319126344}
   PointSound: {fileID: 82032705964804972}
   PlayButton: {fileID: 0}

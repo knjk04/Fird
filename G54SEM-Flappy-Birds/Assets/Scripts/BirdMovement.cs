@@ -13,7 +13,7 @@ public class BirdMovement : MonoBehaviour
     private bool BirdTiltedUpwards;
     private float BirdVerticalPosition;
 
-    public GameManager GameController;
+    //public GameManager GameController;
 
 	public void Start() 
 	{
@@ -22,37 +22,46 @@ public class BirdMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // if (GameManager.GameInstance.IsGameOver())
-        //{
+
+        if (!GameManager.GameInstance.IsGameOver())
+        {
             // move bird up when user presses
-            if ((Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")))
+            if (Input.GetButton("Fire1"))
             {
+				Debug.Log("I believe I can fly");
 
-                Debug.Log("I believe I can fly");
+				RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
 
-                RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
+				BirdVerticalPosition = RigidBody2D.position.y;
 
-                BirdVerticalPosition = RigidBody2D.position.y;
+				// if bird is falling, change direction
+				if (!BirdTiltedUpwards)
+				{
+					transform.eulerAngles = Vector3.forward * 25;
+					BirdTiltedUpwards = true;
+				}
+			}
+			else
+			{
+				if (RigidBody2D.position.y < BirdVerticalPosition)
+				{
+					transform.eulerAngles = Vector3.forward * -85;
+					BirdTiltedUpwards = false;
+				}
+			}
+        }
+        else
+        {
+            RigidBody2D.velocity = Vector3.zero;
+            //Debug.Log("Bird should not move because the game is over");
 
-                // if bird is falling, change direction
-                if (!BirdTiltedUpwards)
-                {
-                    transform.eulerAngles = Vector3.forward * 25;
-                    BirdTiltedUpwards = true;
-                }
-            }
-            else
-            {
-                if (RigidBody2D.position.y < BirdVerticalPosition)
-                {
-                    transform.eulerAngles = Vector3.forward * -85;
-                    BirdTiltedUpwards = false;
-                }
-            }
-        //}
-        //else
-        //{
-        //    Debug.Log("Bird should not move because the game is over");
-        //}
+        }
+    }
+
+    public void DestroyBird()
+    {
+        //Debug.Log("Destroy the bird");
+        //Destroy(gameObject);
+        //DestroyImmediate(gameObject);
     }
 }
