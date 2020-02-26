@@ -52,10 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PipeSet:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1312803296432322, guid: 483a9bfc507e3964fbfda6e37c2efc4f, type: 2}
+  - {fileID: 1312803296432322, guid: bde6b18138d7da9489a8f1512c372863, type: 2}
+  - {fileID: 1312803296432322, guid: 58b73285f96ba284ab7cd3e35bbeb6b7, type: 2}
+  - {fileID: 1312803296432322, guid: 956e2385da4a6b240be97a9f0eddf20f, type: 2}
+  - {fileID: 1312803296432322, guid: 3fc3e4cf3dc775a4ca3d1796fc25d98f, type: 2}
   SpawnValues: {x: 0, y: 0}
   SpawnWait: 2

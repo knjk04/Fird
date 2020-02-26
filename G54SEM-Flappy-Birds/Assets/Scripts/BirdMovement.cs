@@ -13,34 +13,63 @@ public class BirdMovement : MonoBehaviour
     private bool BirdTiltedUpwards;
     private float BirdVerticalPosition;
 
-	public void Start() 
+    //public GameManager GameController;
+
+    private Vector3 BirdTransform;
+    //private Quaternion BirdRotation;
+
+    private float RotationSpeed = 1f;
+
+    public void Start() 
 	{
         BirdTiltedUpwards = false;
-	}
+        BirdTransform = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    }
 
     private void FixedUpdate()
     {
-        // move bird up when user presses
-        if ((Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")))
+
+        if (!GameManager.GameInstance.IsGameOver())
         {
-            RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
-
-            BirdVerticalPosition = RigidBody2D.position.y;
-
-            // if bird is falling, change direction
-            if (!BirdTiltedUpwards)
+            // move bird up when user presses
+            if (Input.GetButton("Fire1"))
             {
-                transform.eulerAngles = Vector3.forward * 25;
-                BirdTiltedUpwards = true;
+				Debug.Log("I believe I can fly");
+
+				RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
+
+				BirdVerticalPosition = RigidBody2D.position.y;
+
+                // if bird is falling, change direction
+                if (!BirdTiltedUpwards)
+                {
+                    transform.eulerAngles = Vector3.forward * 25;
+                    BirdTiltedUpwards = true;
+                }
+            }
+			else
+			{
+                if (RigidBody2D.position.y < BirdVerticalPosition)
+                {
+                    transform.eulerAngles = Vector3.forward * -85;
+                    BirdTiltedUpwards = false;
+                }
             }
         }
         else
         {
-            if (RigidBody2D.position.y < BirdVerticalPosition)
-            {
-                transform.eulerAngles = Vector3.forward * -85;
-                BirdTiltedUpwards = false;
-            }
+            RigidBody2D.velocity = Vector3.zero;
+            //Debug.Log("Bird should not move because the game is over");
+
         }
     }
+
+    public void ResetBird()
+    {
+        gameObject.transform.position = BirdTransform;
+        transform.rotation = Quaternion.identity;
+        
+    }
+
+
 }
