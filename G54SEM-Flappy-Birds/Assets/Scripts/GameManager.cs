@@ -34,10 +34,14 @@ public class GameManager : MonoBehaviour
 
     private int PlayerScore = 0;
     private int HighScore = 0;
+    public bool FirstGame = true;
 
     public AudioSource PointSound;
 
     public Button PlayButton;
+
+    //public Image GoldMedal;
+    public GameObject GoldMedal;
 
 
     void Start()
@@ -100,7 +104,7 @@ public class GameManager : MonoBehaviour
 
     private void RestartGame()
     {
-        Debug.Log("GmaeOver panel should not showing");
+        Debug.Log("GameOver panel should not showing");
         GameOverPanel.SetActive(false);
         GetReadyPanel.SetActive(true);
         ScorePanel.SetActive(true);
@@ -108,6 +112,8 @@ public class GameManager : MonoBehaviour
 
         GameOverScore.enabled = false;
         HighScoreUI.enabled = false;
+        //GoldMedal.enabled = false;
+        GoldMedal.SetActive(false);
 
         Bird.ResetBird();
         BirdRigidBody.gravityScale = 0f;
@@ -115,8 +121,8 @@ public class GameManager : MonoBehaviour
         PlayerScore = 0;
         ScoreUI.text = PlayerScore.ToString();
         ScoreUI.enabled = true;
-        
 
+        FirstGame = false;
 
 
 
@@ -167,6 +173,13 @@ public class GameManager : MonoBehaviour
 
         if (SetHighScore())
         {
+            //GoldMedal.enabled = true;
+            if (!FirstGame)
+            {
+                GoldMedal.SetActive(true);
+            }
+ 
+            Debug.Log("Show the medal");
             HighScoreUI.text = ScoreUI.text;
         }
         else
