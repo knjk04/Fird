@@ -22,11 +22,14 @@ public class BirdMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!GameController.IsGameOver())
-        {
+        // if (GameManager.GameInstance.IsGameOver())
+        //{
             // move bird up when user presses
             if ((Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")))
             {
+
+                Debug.Log("I believe I can fly");
+
                 RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
 
                 BirdVerticalPosition = RigidBody2D.position.y;
@@ -46,10 +49,10 @@ public class BirdMovement : MonoBehaviour
                     BirdTiltedUpwards = false;
                 }
             }
-        }
-        else
-        {
-            //Debug.Log("Bird should not move because the game is over");
-        }
+        //}
+        //else
+        //{
+        //    Debug.Log("Bird should not move because the game is over");
+        //}
     }
 }

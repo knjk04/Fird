@@ -11,11 +11,14 @@ public class GameManager : MonoBehaviour
     public static GameManager GameInstance;
 
     public GameObject GameOverPanel;
+    
     // score text
     public TextMeshProUGUI ScoreUI;
-    // pipe generation script
+    public TextMeshProUGUI GameOverScore;
+    public TextMeshProUGUI HighScoreUI;
+
     public GameObject PipeGenerator;
-    public GameObject PipeScript;
+    private GameObject PipeScript;
  
     public GameObject ScorePanel;
     public GameObject GetReadyPanel;
@@ -23,13 +26,10 @@ public class GameManager : MonoBehaviour
     public Rigidbody2D BirdRigidBody;
 
     public Rigidbody2D birdRB;
-    public TextMeshProUGUI GameOverScore;
-    public TextMeshProUGUI HighScoreUI;
+    
 
 
     private bool GameOver = false;
-    //private bool GameOver;
-
 
     // used to handle start of game event
     private bool Started = false;
