@@ -35,7 +35,7 @@ public class BirdMovement : MonoBehaviour
             // move bird up when user presses
             if (Input.GetButton("Fire1"))
             {
-				Debug.Log("I believe I can fly");
+				//Debug.Log("I believe I can fly");
                 
                 rigidBody2D.AddForce(new Vector3(0f, 0.6f, 0f), ForceMode2D.Impulse);
 
