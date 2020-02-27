@@ -8,89 +8,200 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     // single instance
-    public static GameManager GameInstance;
-    public GameObject GameOverPanel;
-    // score text
-    public TextMeshProUGUI ScoreUI;
-    // pipe generation script
-    public GameObject PipeGenerator;
-    public GameObject PipeScript;
- 
-    public GameObject ScorePanel;
-    public GameObject GetReadyPanel;
-    public Rigidbody2D BirdRigidBody;
+    public static GameManager gameInstance;
 
-    private bool GameOver = false;
-    // used to handle start of game event
-    private bool Started = false;
-    public AudioSource BackgroundAudio;
-
-    private int PlayerScore = 0;
-    public AudioSource PointSound;
+    public GameObject gameOverPanel;
     
+    // score text
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameOverScoreText;
+    public TextMeshProUGUI highScoreText;
+    public BirdMovement bird;
+
+    public GameObject pipeGenerator;
+    private GameObject pipeScript;
+ 
+    public GameObject scorePanel;
+    public GameObject getReadyPanel;
+
+    public Rigidbody2D birdRigidBody2D;
+
+    private bool gameOver = false;
+
+    // used to handle start of game event
+    private bool gameStarted = false;
+    public AudioSource backgroundAudio;
+
+    private int playerScore = 0;
+    private int highScore = 0;
+    public bool firstGame = true;
+
+    public AudioSource pointSound;
+
+    public Button playButton;
+
+    //public Image GoldMedal;
+    public GameObject goldMedal;
+
 
     void Start()
     {
+        gameOverScoreText.enabled = false;
+        highScoreText.enabled = false;
+        //GameOver = false;
     }
 
     void Awake()
     {
-        if (GameInstance == null)
+        if (gameInstance != null && gameInstance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
         {
             // Set single instance
-            GameInstance = this;
-        }
-        else if (GameInstance != null)
-        {
-            Destroy(gameObject);
+            gameInstance = this;
         }
     }
 
     void Update()
     {
-        if (GameOver == true && Input.GetMouseButtonDown(0))
-        {   
-            // If gameover and user clicks, restart the game.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
         // Start game on click 
-        if (Input.GetButtonDown("Fire1") && Started == false)
+        if (!gameOver && (Input.GetButtonDown("Fire1") && gameStarted == false))
         {
-            Started = true;
-            // Create scene and show score
-            GetReadyPanel.SetActive(false);
-            ScorePanel.SetActive(true);
-
-            // Introduce gravity and allow bird to fall
-            BirdRigidBody.gravityScale = 1f;
-
-            BackgroundAudio.Play();
-
-            // Start pipe generation
-            Vector2 spawnPosition = new Vector2(0.0f, 0.0f);
-            Quaternion rotation = Quaternion.identity;
-            PipeScript = Instantiate(PipeGenerator, spawnPosition, rotation);
+            Debug.Log("User is ready");
+            SetupGame();
         }
+    }
+
+    void SetupGame()
+    {
+        playButton.gameObject.SetActive(false);
+
+        gameStarted = true;
+        // Create scene and show score
+        getReadyPanel.SetActive(false);
+        scorePanel.SetActive(true);
+
+        // Introduce gravity and allow bird to fall
+        birdRigidBody2D.gravityScale = 1f;
+
+        if (backgroundAudio != null)
+        {
+            backgroundAudio.Play();
+        }
+        else
+        {
+            Debug.Log("Background audio is null");
+        }
+
+        // Start pipe generation
+        Vector2 spawnPosition = new Vector2(0.0f, 0.0f);
+        Quaternion rotation = Quaternion.identity;
+        pipeScript = Instantiate(pipeGenerator, spawnPosition, rotation);
+    }
+
+    private void RestartGame()
+    {
+        Debug.Log("GameOver panel should not showing");
+        gameOverPanel.SetActive(false);
+        getReadyPanel.SetActive(true);
+        scorePanel.SetActive(true);
+        playButton.gameObject.SetActive(false);
+
+        gameOverScoreText.enabled = false;
+        highScoreText.enabled = false;
+        //GoldMedal.enabled = false;
+        goldMedal.SetActive(false);
+
+        bird.ResetBird();
+        birdRigidBody2D.gravityScale = 0f;
+
+        playerScore = 0;
+        scoreText.text = playerScore.ToString();
+        scoreText.enabled = true;
+
+        firstGame = false;
+
+
+
+        gameOver = false;
+    }
+
+    public void RunGame()
+    {
+        Debug.Log("Run game");
+        RestartGame();
     }
 
     public void AddScore()                          
     {
-        PlayerScore++;
+        playerScore++;
         // Changes score displayed to user
-        ScoreUI.text = PlayerScore.ToString();
+        scoreText.text = playerScore.ToString();
 
-        PointSound.Play();
+        if (pointSound != null)
+        {
+            pointSound.Play();
+        }
+        else
+        {
+            Debug.Log("Point sound is null");
+        }
+        
 
     }
 
     public void EndGame()                          
     {
+        Debug.Log("in end game");
+        
+
         // Handles logic when game finishes (bird has crashed)
-        GameOverPanel.SetActive(true);
-        GameOver = true;
-        Started = false;
+        gameOverPanel.SetActive(true);
+        gameOver = true;
+        gameStarted = false;
         // Stop pipe creation script
-        Destroy(PipeScript);
+        Destroy(pipeScript);
+        scoreText.enabled = false;
+
+       
+        gameOverScoreText.text = scoreText.text;
+        gameOverScoreText.enabled = true;
+        highScoreText.enabled = true;
+
+        if (SetHighScore())
+        {
+            //GoldMedal.enabled = true;
+            if (!firstGame)
+            {
+                goldMedal.SetActive(true);
+            }
+ 
+            Debug.Log("Show the medal");
+            highScoreText.text = scoreText.text;
+        }
+        else
+        {
+            highScoreText.text = highScore.ToString();
+        }
+        playButton.gameObject.SetActive(true);
+    }
+
+    bool SetHighScore()
+    {
+        if (highScore < playerScore)
+        {
+            highScore = playerScore;
+            return true;
+        }
+        return false;
+    }
+
+    public bool IsGameOver()
+    {
+        //Debug.Log("GameOver = " + GameOver);
+        return gameOver;
     }
 }

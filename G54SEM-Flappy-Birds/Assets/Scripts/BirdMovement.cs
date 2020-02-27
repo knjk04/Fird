@@ -5,42 +5,66 @@ using UnityEngine;
 public class BirdMovement : MonoBehaviour
 {
 	// ensure these are set in the inspector
-	public Rigidbody2D RigidBody2D;
-    // TODO: need to implement a hardcoded speed or the bird will constantly increase in speed....
-	public float Speed;
-    public float BirdVerticalVelocity;
+	public Rigidbody2D rigidBody2D;
+	public float speed;
+    public float birdVerticalVelocity;
 
-    private bool BirdTiltedUpwards;
-    private float BirdVerticalPosition;
+    private bool birdTiltedUpwards;
+    private float birdVerticalPosition;
 
-	public void Start() 
+    //public GameManager GameController;
+
+    private Vector3 birdTransform;
+    //private Quaternion BirdRotation;
+
+    private float rotationSpeed = 1f;
+
+    public void Start() 
 	{
-        BirdTiltedUpwards = false;
-	}
+        birdTiltedUpwards = false;
+        birdTransform = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    }
 
     private void FixedUpdate()
     {
-        // move bird up when user presses
-        if ((Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1")))
+
+        float vertical = Input.GetAxis("Horizontal");
+
+        if (!GameManager.gameInstance.IsGameOver())
         {
-            RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
-
-            BirdVerticalPosition = RigidBody2D.position.y;
-
-            // if bird is falling, change direction
-            if (!BirdTiltedUpwards)
+            // move bird up when user presses
+            if (Input.GetButton("Fire1"))
             {
-                transform.eulerAngles = Vector3.forward * 25;
-                BirdTiltedUpwards = true;
+				Debug.Log("I believe I can fly");
+                
+                rigidBody2D.AddForce(new Vector3(0f, 0.6f, 0f), ForceMode2D.Impulse);
+
+				birdVerticalPosition = rigidBody2D.position.y;
+
+                // if bird is falling, change direction
+                if (!birdTiltedUpwards)
+                {
+                    // transform.eulerAngles = Vector3.forward * 25;
+                    birdTiltedUpwards = true;
+                }
             }
-        }
-        else
-        {
-            if (RigidBody2D.position.y < BirdVerticalPosition)
-            {
-                transform.eulerAngles = Vector3.forward * -85;
-                BirdTiltedUpwards = false;
+			else
+			{
+                if (rigidBody2D.position.y < birdVerticalPosition)
+                {
+                    // transform.eulerAngles = Vector3.forward * -85;
+                    birdTiltedUpwards = false;
+                }
             }
         }
     }
+
+    public void ResetBird()
+    {
+        gameObject.transform.position = birdTransform;
+        // transform.rotation = Quaternion.identity;
+        
+    }
+
+
 }
