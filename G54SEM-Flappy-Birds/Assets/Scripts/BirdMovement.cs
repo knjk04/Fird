@@ -6,8 +6,8 @@ public class BirdMovement : MonoBehaviour
 {
 	// ensure these are set in the inspector
 	public Rigidbody2D rigidBody2D;
-	public float speed;
-    public float birdVerticalVelocity;
+	//public float speed;
+    //public float birdVerticalVelocity;
 
     private bool birdTiltedUpwards;
     private float birdVerticalPosition;
@@ -17,7 +17,7 @@ public class BirdMovement : MonoBehaviour
     private Vector3 birdTransform;
     //private Quaternion BirdRotation;
 
-    private float rotationSpeed = 1f;
+    //private float rotationSpeed = 1f;
 
     public void Start() 
 	{
@@ -28,14 +28,14 @@ public class BirdMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
-        float vertical = Input.GetAxis("Horizontal");
+        //float vertical = Input.GetAxis("Horizontal");
 
         if (!GameManager.gameInstance.IsGameOver())
         {
             // move bird up when user presses
             if (Input.GetButton("Fire1"))
             {
-				Debug.Log("I believe I can fly");
+				//Debug.Log("I believe I can fly");
                 
                 rigidBody2D.AddForce(new Vector3(0f, 0.6f, 0f), ForceMode2D.Impulse);
 

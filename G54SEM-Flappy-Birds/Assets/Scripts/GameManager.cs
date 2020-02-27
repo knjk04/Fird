@@ -34,21 +34,21 @@ public class GameManager : MonoBehaviour
 
     private int playerScore = 0;
     private int highScore = 0;
-    public bool firstGame = true;
+    private bool firstGame = true;
 
     public AudioSource pointSound;
 
     public Button playButton;
 
-    //public Image GoldMedal;
     public GameObject goldMedal;
 
+    //public GameObject birdGenerator;
+    public BirdGenerator birdGenerator;
 
     void Start()
     {
         gameOverScoreText.enabled = false;
         highScoreText.enabled = false;
-        //GameOver = false;
     }
 
     void Awake()
@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour
 
         firstGame = false;
 
+        birdGenerator.UpdateBirdSprite();
 
 
         gameOver = false;
@@ -137,6 +138,7 @@ public class GameManager : MonoBehaviour
 
     public void AddScore()                          
     {
+        Debug.Log("Incrementing score. Score before = " + playerScore + ", score now = " + (playerScore + 1));
         playerScore++;
         // Changes score displayed to user
         scoreText.text = playerScore.ToString();
