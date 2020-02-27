@@ -1055,6 +1055,7 @@ GameObject:
   - component: {fileID: 1107260540}
   - component: {fileID: 1107260539}
   - component: {fileID: 1107260541}
+  - component: {fileID: 1107260542}
   m_Layer: 0
   m_Name: Bird Generator
   m_TagString: Player
@@ -1191,9 +1192,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1107260536}
+  animator: {fileID: 1107260542}
   blueBird: {fileID: 21300000, guid: 4d617dc4779821c478f8e699a9f411fb, type: 3}
   redBird: {fileID: 21300000, guid: 22590c69501bede4fbaa1fd50de7192f, type: 3}
   yellowBird: {fileID: 21300000, guid: 69ca8b067a0502548a7a27a3de0d9bfb, type: 3}
+  blueAnim: {fileID: 9100000, guid: d9a8953b0f8e8b247b869506ac95b314, type: 2}
+  redAnim: {fileID: 9100000, guid: 0ec34972e9e245a4086100e1dbe6fca1, type: 2}
+  yellowAnim: {fileID: 9100000, guid: daae9372bc2c8234c96cf8c0b1f46e00, type: 2}
+--- !u!95 &1107260542
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1107260534}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1141104658
 GameObject:
   m_ObjectHideFlags: 0
