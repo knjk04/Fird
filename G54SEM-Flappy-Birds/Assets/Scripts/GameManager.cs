@@ -8,52 +8,52 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     // single instance
-    public static GameManager GameInstance;
+    public static GameManager gameInstance;
 
-    public GameObject GameOverPanel;
+    public GameObject gameOverPanel;
     
     // score text
-    public TextMeshProUGUI ScoreUI;
-    public TextMeshProUGUI GameOverScore;
-    public TextMeshProUGUI HighScoreUI;
-    public BirdMovement Bird;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameOverScoreText;
+    public TextMeshProUGUI highScoreText;
+    public BirdMovement bird;
 
-    public GameObject PipeGenerator;
-    private GameObject PipeScript;
+    public GameObject pipeGenerator;
+    private GameObject pipeScript;
  
-    public GameObject ScorePanel;
-    public GameObject GetReadyPanel;
+    public GameObject scorePanel;
+    public GameObject getReadyPanel;
 
-    public Rigidbody2D BirdRigidBody;
+    public Rigidbody2D birdRigidBody2D;
 
-    private bool GameOver = false;
+    private bool gameOver = false;
 
     // used to handle start of game event
-    private bool Started = false;
-    public AudioSource BackgroundAudio;
+    private bool gameStarted = false;
+    public AudioSource backgroundAudio;
 
-    private int PlayerScore = 0;
-    private int HighScore = 0;
-    public bool FirstGame = true;
+    private int playerScore = 0;
+    private int highScore = 0;
+    public bool firstGame = true;
 
-    public AudioSource PointSound;
+    public AudioSource pointSound;
 
-    public Button PlayButton;
+    public Button playButton;
 
     //public Image GoldMedal;
-    public GameObject GoldMedal;
+    public GameObject goldMedal;
 
 
     void Start()
     {
-        GameOverScore.enabled = false;
-        HighScoreUI.enabled = false;
+        gameOverScoreText.enabled = false;
+        highScoreText.enabled = false;
         //GameOver = false;
     }
 
     void Awake()
     {
-        if (GameInstance != null && GameInstance != this)
+        if (gameInstance != null && gameInstance != this)
         {
             Destroy(this.gameObject);
             return;
@@ -61,14 +61,14 @@ public class GameManager : MonoBehaviour
         else
         {
             // Set single instance
-            GameInstance = this;
+            gameInstance = this;
         }
     }
 
     void Update()
     {
         // Start game on click 
-        if (!GameOver && (Input.GetButtonDown("Fire1") && Started == false))
+        if (!gameOver && (Input.GetButtonDown("Fire1") && gameStarted == false))
         {
             Debug.Log("User is ready");
             SetupGame();
@@ -77,19 +77,19 @@ public class GameManager : MonoBehaviour
 
     void SetupGame()
     {
-        PlayButton.gameObject.SetActive(false);
+        playButton.gameObject.SetActive(false);
 
-        Started = true;
+        gameStarted = true;
         // Create scene and show score
-        GetReadyPanel.SetActive(false);
-        ScorePanel.SetActive(true);
+        getReadyPanel.SetActive(false);
+        scorePanel.SetActive(true);
 
         // Introduce gravity and allow bird to fall
-        BirdRigidBody.gravityScale = 1f;
+        birdRigidBody2D.gravityScale = 1f;
 
-        if (BackgroundAudio != null)
+        if (backgroundAudio != null)
         {
-            BackgroundAudio.Play();
+            backgroundAudio.Play();
         }
         else
         {
@@ -99,34 +99,34 @@ public class GameManager : MonoBehaviour
         // Start pipe generation
         Vector2 spawnPosition = new Vector2(0.0f, 0.0f);
         Quaternion rotation = Quaternion.identity;
-        PipeScript = Instantiate(PipeGenerator, spawnPosition, rotation);
+        pipeScript = Instantiate(pipeGenerator, spawnPosition, rotation);
     }
 
     private void RestartGame()
     {
         Debug.Log("GameOver panel should not showing");
-        GameOverPanel.SetActive(false);
-        GetReadyPanel.SetActive(true);
-        ScorePanel.SetActive(true);
-        PlayButton.gameObject.SetActive(false);
+        gameOverPanel.SetActive(false);
+        getReadyPanel.SetActive(true);
+        scorePanel.SetActive(true);
+        playButton.gameObject.SetActive(false);
 
-        GameOverScore.enabled = false;
-        HighScoreUI.enabled = false;
+        gameOverScoreText.enabled = false;
+        highScoreText.enabled = false;
         //GoldMedal.enabled = false;
-        GoldMedal.SetActive(false);
+        goldMedal.SetActive(false);
 
-        Bird.ResetBird();
-        BirdRigidBody.gravityScale = 0f;
+        bird.ResetBird();
+        birdRigidBody2D.gravityScale = 0f;
 
-        PlayerScore = 0;
-        ScoreUI.text = PlayerScore.ToString();
-        ScoreUI.enabled = true;
+        playerScore = 0;
+        scoreText.text = playerScore.ToString();
+        scoreText.enabled = true;
 
-        FirstGame = false;
+        firstGame = false;
 
 
 
-        GameOver = false;
+        gameOver = false;
     }
 
     public void RunGame()
@@ -137,13 +137,13 @@ public class GameManager : MonoBehaviour
 
     public void AddScore()                          
     {
-        PlayerScore++;
+        playerScore++;
         // Changes score displayed to user
-        ScoreUI.text = PlayerScore.ToString();
+        scoreText.text = playerScore.ToString();
 
-        if (PointSound != null)
+        if (pointSound != null)
         {
-            PointSound.Play();
+            pointSound.Play();
         }
         else
         {
@@ -159,41 +159,41 @@ public class GameManager : MonoBehaviour
         
 
         // Handles logic when game finishes (bird has crashed)
-        GameOverPanel.SetActive(true);
-        GameOver = true;
-        Started = false;
+        gameOverPanel.SetActive(true);
+        gameOver = true;
+        gameStarted = false;
         // Stop pipe creation script
-        Destroy(PipeScript);
-        ScoreUI.enabled = false;
+        Destroy(pipeScript);
+        scoreText.enabled = false;
 
        
-        GameOverScore.text = ScoreUI.text;
-        GameOverScore.enabled = true;
-        HighScoreUI.enabled = true;
+        gameOverScoreText.text = scoreText.text;
+        gameOverScoreText.enabled = true;
+        highScoreText.enabled = true;
 
         if (SetHighScore())
         {
             //GoldMedal.enabled = true;
-            if (!FirstGame)
+            if (!firstGame)
             {
-                GoldMedal.SetActive(true);
+                goldMedal.SetActive(true);
             }
  
             Debug.Log("Show the medal");
-            HighScoreUI.text = ScoreUI.text;
+            highScoreText.text = scoreText.text;
         }
         else
         {
-            HighScoreUI.text = HighScore.ToString();
+            highScoreText.text = highScore.ToString();
         }
-        PlayButton.gameObject.SetActive(true);
+        playButton.gameObject.SetActive(true);
     }
 
     bool SetHighScore()
     {
-        if (HighScore < PlayerScore)
+        if (highScore < playerScore)
         {
-            HighScore = PlayerScore;
+            highScore = playerScore;
             return true;
         }
         return false;
@@ -202,6 +202,6 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver()
     {
         //Debug.Log("GameOver = " + GameOver);
-        return GameOver;
+        return gameOver;
     }
 }

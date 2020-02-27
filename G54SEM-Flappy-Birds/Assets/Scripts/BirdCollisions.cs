@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BirdCollisions : MonoBehaviour {
+public class BirdCollisions : MonoBehaviour 
+{
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -11,9 +12,7 @@ public class BirdCollisions : MonoBehaviour {
         if (collision.gameObject.tag != "score-box")
         {
             Debug.Log("Collision so end the game");
-            GameManager.GameInstance.EndGame();
+            GameManager.gameInstance.EndGame();
         }
-
-        
     }
 }

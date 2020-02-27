@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnvironmentGenerator : MonoBehaviour {
+public class EnvironmentGenerator : MonoBehaviour 
+{
 
     // Ensure this is initialised in the inspector:
-    public GameObject[] Envs;
+    public GameObject[] backgrounds;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (Envs.Length < 1)
+        if (backgrounds.Length < 1)
         {
             Debug.Log("The environments array is empty. Please initialise it.");
         }
         else
         {
-            int PipeSpriteChoice = Random.Range(0, Envs.Length);
+            int PipeSpriteChoice = Random.Range(0, backgrounds.Length);
             Vector2 SpawnPosition = new Vector2(0.0f, 0.0f);
             Quaternion Rotation = Quaternion.identity;
-            GameObject Env = Instantiate(Envs[PipeSpriteChoice], SpawnPosition, Rotation);
+            GameObject Env = Instantiate(backgrounds[PipeSpriteChoice], SpawnPosition, Rotation);
         }
     }
 }
