@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 141654706}
   - component: {fileID: 141654705}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Play Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 167047837}
   - component: {fileID: 167047839}
   m_Layer: 0
-  m_Name: welcome
+  m_Name: Get Ready Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 421648228}
   - component: {fileID: 421648227}
   m_Layer: 5
-  m_Name: Score
+  m_Name: Score Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 681545101}
   - component: {fileID: 681545102}
   m_Layer: 5
-  m_Name: play
+  m_Name: Play Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -735,6 +735,72 @@ Prefab:
       propertyPath: GoldMedal
       value: 
       objectReference: {fileID: 1141104658}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: pointSound
+      value: 
+      objectReference: {fileID: 1229004459}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: backgroundAudio
+      value: 
+      objectReference: {fileID: 1229004458}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: goldMedal
+      value: 
+      objectReference: {fileID: 1141104658}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: playButton
+      value: 
+      objectReference: {fileID: 141654705}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: birdRigidBody2D
+      value: 
+      objectReference: {fileID: 1640553518}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: bird
+      value: 
+      objectReference: {fileID: 1640553517}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: pipeGenerator
+      value: 
+      objectReference: {fileID: 1853079527007858, guid: 7772fdeddb4b24dc59c7f540472841f2,
+        type: 2}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: scorePanel
+      value: 
+      objectReference: {fileID: 421648226}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: getReadyPanel
+      value: 
+      objectReference: {fileID: 167047836}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 1459040579}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: gameOverScoreText
+      value: 
+      objectReference: {fileID: 986372840}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 421648227}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: gameOverPanel
+      value: 
+      objectReference: {fileID: 1747226465}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8913545744df0c4cb0675fa24b84ee1, type: 2}
   m_IsPrefabAsset: 0
@@ -749,7 +815,7 @@ GameObject:
   - component: {fileID: 986372841}
   - component: {fileID: 986372840}
   m_Layer: 8
-  m_Name: GameOverScore
+  m_Name: Game Over Score Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -981,7 +1047,7 @@ GameObject:
   - component: {fileID: 1141104661}
   - component: {fileID: 1141104660}
   m_Layer: 5
-  m_Name: GoldMedal
+  m_Name: Gold Medal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1039,6 +1105,16 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1141104658}
   m_CullTransparentMesh: 0
+--- !u!82 &1229004458 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82626872319126344, guid: a8913545744df0c4cb0675fa24b84ee1,
+    type: 2}
+  m_PrefabInternal: {fileID: 779678871}
+--- !u!82 &1229004459 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82032705964804972, guid: a8913545744df0c4cb0675fa24b84ee1,
+    type: 2}
+  m_PrefabInternal: {fileID: 779678871}
 --- !u!1 &1459040577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,7 +1126,7 @@ GameObject:
   - component: {fileID: 1459040580}
   - component: {fileID: 1459040579}
   m_Layer: 5
-  m_Name: HighScore
+  m_Name: High Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1221,7 +1297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55cb0baebe9649342982a5f7ff695419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Envs:
+  backgrounds:
   - {fileID: 1424475855651972, guid: dd44c5591bacd9741ae9fd0b0d69144c, type: 2}
   - {fileID: 1099394559373668, guid: c7f335bdb2e64584b93207e041d3206d, type: 2}
 --- !u!4 &1477865252
@@ -1393,9 +1469,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19028807c39e4145a76ade59ebbeede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RigidBody2D: {fileID: 1640553518}
-  Speed: 30
-  BirdVerticalVelocity: 0.75
+  rigidBody2D: {fileID: 1640553518}
+  speed: 0
+  birdVerticalVelocity: 0
 --- !u!50 &1640553518
 Rigidbody2D:
   serializedVersion: 4
@@ -1461,7 +1537,7 @@ GameObject:
   - component: {fileID: 1747226466}
   - component: {fileID: 1747226467}
   m_Layer: 0
-  m_Name: gameover
+  m_Name: Game Over Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1565,6 +1641,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114041217190587018, guid: 16c88a4b61e66114c9b3f94c9fea3c48,
+        type: 2}
+      propertyPath: rigidBody2D
+      value: 
+      objectReference: {fileID: 1640553518}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16c88a4b61e66114c9b3f94c9fea3c48, type: 2}
   m_IsPrefabAsset: 0
