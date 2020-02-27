@@ -6,8 +6,8 @@ public class BirdMovement : MonoBehaviour
 {
 	// ensure these are set in the inspector
 	public Rigidbody2D rigidBody2D;
-	public float speed;
-    public float birdVerticalVelocity;
+	//public float speed;
+    //public float birdVerticalVelocity;
 
     private bool birdTiltedUpwards;
     private float birdVerticalPosition;
@@ -17,7 +17,7 @@ public class BirdMovement : MonoBehaviour
     private Vector3 birdTransform;
     //private Quaternion BirdRotation;
 
-    private float rotationSpeed = 1f;
+    //private float rotationSpeed = 1f;
 
     public void Start() 
 	{
