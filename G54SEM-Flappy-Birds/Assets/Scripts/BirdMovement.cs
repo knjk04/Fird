@@ -35,8 +35,8 @@ public class BirdMovement : MonoBehaviour
             if (Input.GetButton("Fire1"))
             {
 				Debug.Log("I believe I can fly");
-
-				RigidBody2D.velocity += new Vector2(0f, BirdVerticalVelocity);
+                
+                RigidBody2D.AddForce(new Vector3(0f, 0.6f, 0f), ForceMode2D.Impulse);
 
 				BirdVerticalPosition = RigidBody2D.position.y;
 
@@ -56,18 +56,12 @@ public class BirdMovement : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            RigidBody2D.velocity = Vector3.zero;
-            //Debug.Log("Bird should not move because the game is over");
-
-        }
     }
 
     public void ResetBird()
     {
         gameObject.transform.position = BirdTransform;
-        transform.rotation = Quaternion.identity;
+        // transform.rotation = Quaternion.identity;
         
     }
 
