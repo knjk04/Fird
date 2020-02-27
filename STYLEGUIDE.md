@@ -73,8 +73,7 @@ string URL;
 | Type       | Pascal | `public class GameController { ... }` |
 | Interface  | Pascal | `public interface IEnumerable { ... }` |
 | Method     | Pascal | `public void EndGame() { ... }` |
-| Field      | Pascal | `public struct UInt32 { public const Min = 0; }` | 
-| Parameter  | Camel  | `public void DisplayScore(int playerScore) { ... }` |
+| Variable   | Camel  | `public void DisplayScore(int playerScore) { ... }` |
 
 
 # Layout conventions
@@ -192,12 +191,12 @@ There should be exactly one blank line between the end of a method and the start
 Good:
 
 ```c#
-public void foo() 
+public void Foo() 
 {
     // ...
 }
 
-public void bar() 
+public void Bar() 
 {
     // ...
 }
@@ -206,17 +205,17 @@ public void bar()
 Bad:
 
 ```c#
-public void foo() 
+public void Foo() 
 {
     // ...
 }
-public void bar() 
+public void Bar() 
 {
     // ...
 }
 ```
 
-Bad:
+Also bad:
 
 ```c#
 public void foo() 
