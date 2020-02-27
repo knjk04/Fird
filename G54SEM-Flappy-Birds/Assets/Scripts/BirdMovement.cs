@@ -6,8 +6,9 @@ public class BirdMovement : MonoBehaviour
 {
 	// ensure these are set in the inspector
 	public Rigidbody2D rigidBody2D;
-	//public float speed;
+    //public float speed;
     //public float birdVerticalVelocity;
+    public AudioSource flap;
 
     private bool birdTiltedUpwards;
     private float birdVerticalPosition;
@@ -40,6 +41,8 @@ public class BirdMovement : MonoBehaviour
                 rigidBody2D.AddForce(new Vector3(0f, 0.6f, 0f), ForceMode2D.Impulse);
 
 				birdVerticalPosition = rigidBody2D.position.y;
+
+                flap.Play();
 
                 // if bird is falling, change direction
                 if (!birdTiltedUpwards)

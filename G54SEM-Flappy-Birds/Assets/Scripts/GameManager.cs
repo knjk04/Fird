@@ -49,6 +49,15 @@ public class GameManager : MonoBehaviour
     {
         gameOverScoreText.enabled = false;
         highScoreText.enabled = false;
+
+        if (backgroundAudio != null)
+        {
+            backgroundAudio.Play();
+        }
+        else
+        {
+            Debug.Log("Background audio is null");
+        }
     }
 
     void Awake()
@@ -87,14 +96,14 @@ public class GameManager : MonoBehaviour
         // Introduce gravity and allow bird to fall
         birdRigidBody2D.gravityScale = 1f;
 
-        if (backgroundAudio != null)
-        {
-            backgroundAudio.Play();
-        }
-        else
-        {
-            Debug.Log("Background audio is null");
-        }
+        //if (backgroundAudio != null)
+        //{
+        //    backgroundAudio.Play();
+        //}
+        //else
+        //{
+        //    Debug.Log("Background audio is null");
+        //}
 
         // Start pipe generation
         Vector2 spawnPosition = new Vector2(0.0f, 0.0f);
