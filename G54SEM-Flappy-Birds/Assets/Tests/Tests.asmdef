@@ -1,0 +1,14 @@
+{
+    "name": "Tests",
+    "references": [
+        "AssemblyTester"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

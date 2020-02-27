@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
+//using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +11,14 @@ public class GameManager : MonoBehaviour
     public static GameManager gameInstance;
 
     public GameObject gameOverPanel;
-    
+
     // score text
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI gameOverScoreText;
-    public TextMeshProUGUI highScoreText;
+    //public TextMeshProUGUI scoreText;
+    //public TextMeshProUGUI gameOverScoreText;
+    //public TextMeshProUGUI highScoreText;
+    public Text scoreText;
+    public Text gameOverScoreText;
+    public Text highScoreText;
     public BirdMovement bird;
 
     public GameObject pipeGenerator;
