@@ -1492,7 +1492,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1640553519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1646,6 +1646,11 @@ Prefab:
       propertyPath: rigidBody2D
       value: 
       objectReference: {fileID: 1640553518}
+    - target: {fileID: 50683702834907990, guid: 16c88a4b61e66114c9b3f94c9fea3c48,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16c88a4b61e66114c9b3f94c9fea3c48, type: 2}
   m_IsPrefabAsset: 0
