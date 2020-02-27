@@ -16,7 +16,7 @@ public class ScoreCollision : MonoBehaviour
 			} 
 			else 
 			{
-                Debug.Log("Call add score");
+                //Debug.Log("Call add score");
                 GameManager.gameInstance.AddScore();
 			}
 		}

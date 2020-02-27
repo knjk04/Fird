@@ -28,7 +28,7 @@ public class BirdMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
-        float vertical = Input.GetAxis("Horizontal");
+        //float vertical = Input.GetAxis("Horizontal");
 
         if (!GameManager.gameInstance.IsGameOver())
         {
