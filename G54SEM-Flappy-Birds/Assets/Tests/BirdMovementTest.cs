@@ -40,19 +40,23 @@ public class BirdMovementTest
                 Debug.Log("Game object has a rigidbody attached");
 
                 Vector2 priorVelocity = rigidbody2D.velocity;
+                gameObject.AddComponent<BirdMovement>();
 
-                BirdMovement bird = new BirdMovement();
-
-                if (bird != null)
+                if (gameObject.GetComponent<BirdMovement>() != null)
                 {
                     Debug.Log("bird is not null");
                 } 
                 else {
                     Debug.Log("bird is null");
                 }
+                Debug.Log("log before test " + priorVelocity);
 
+                gameObject.GetComponent<BirdMovement>().MoveOnInput(gameObject.GetComponent<Rigidbody2D>());
 
                 Vector2 postVelocity = rigidbody2D.velocity;
+                Debug.Log("prior velocity: " + priorVelocity + "\n postVelocity: " + postVelocity);
+                Debug.Log("log test after");
+                Assert.IsTrue(priorVelocity.y < postVelocity.y);
             }
         }
 
