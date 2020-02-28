@@ -18,16 +18,26 @@ public class EnvironmentGeneratorTest
     public IEnumerator EnvironmentGeneratorTestWithEnumeratorPasses()
     {
         GameObject gameObject = new GameObject();
-
+        bool environmentShows;
 
         if (gameObject == null)
         {
             Debug.Log("game object is null");
-        }
+        } 
         else
         {
-            Debug.Log("game object is not null");
             
+            gameObject.AddComponent<EnvironmentGenerator>();
+            if (gameObject.GetComponent<EnvironmentGenerator>() != null)
+            {
+                environmentShows = gameObject.GetComponent<EnvironmentGenerator>().DoesEnvironmentShow();
+             
+            }
+            else
+            {
+                Debug.Log("environmentShows is null");
+            }
+
         }
             yield return null;
     }

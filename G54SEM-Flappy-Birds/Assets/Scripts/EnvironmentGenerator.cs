@@ -9,6 +9,8 @@ public class EnvironmentGenerator : MonoBehaviour
     public GameObject[] backgrounds;
     private GameObject environment;
     private bool environmentShows;
+    private int pipeSpriteChoice;
+    private Vector2 spawnPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -25,15 +27,22 @@ public class EnvironmentGenerator : MonoBehaviour
         }
         else
         {
-            int pipeSpriteChoice = Random.Range(0, backgrounds.Length);
-            Vector2 spawnPosition = new Vector2(0.0f, 0.0f);
-            environment = Instantiate(backgrounds[pipeSpriteChoice], spawnPosition, Quaternion.identity);
+            pipeSpriteChoice = Random.Range(0, backgrounds.Length);
+            spawnPosition = new Vector2(0.0f, 0.0f);
+            environment = InstantiateEnvironment() as GameObject;
         }
         environmentShows = DoesEnvironmentShow();
+        
     }
+
+    public Object InstantiateEnvironment()
+    {
+        return Instantiate(backgrounds[pipeSpriteChoice], spawnPosition, Quaternion.identity);
+    }
+    
 
     public bool DoesEnvironmentShow()
     {
-        return environment == null;
+        return environment != null;
     }
 }
