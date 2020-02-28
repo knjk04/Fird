@@ -1,7 +1,7 @@
 {
     "name": "Tests",
     "references": [
-        "AssemblyTester"
+        "ScriptAssembly"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

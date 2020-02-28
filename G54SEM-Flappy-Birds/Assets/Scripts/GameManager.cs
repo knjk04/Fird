@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-//using TMPro;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,12 +13,12 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverPanel;
 
     // score text
-    //public TextMeshProUGUI scoreText;
-    //public TextMeshProUGUI gameOverScoreText;
-    //public TextMeshProUGUI highScoreText;
-    public Text scoreText;
-    public Text gameOverScoreText;
-    public Text highScoreText;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameOverScoreText;
+    public TextMeshProUGUI highScoreText;
+    // public Text scoreText;
+    // public Text gameOverScoreText;
+    // public Text highScoreText;
     public BirdMovement bird;
 
     public GameObject pipeGenerator;
@@ -98,15 +98,6 @@ public class GameManager : MonoBehaviour
 
         // Introduce gravity and allow bird to fall
         birdRigidBody2D.gravityScale = 1f;
-
-        //if (backgroundAudio != null)
-        //{
-        //    backgroundAudio.Play();
-        //}
-        //else
-        //{
-        //    Debug.Log("Background audio is null");
-        //}
 
         // Start pipe generation
         Vector2 spawnPosition = new Vector2(0.0f, 0.0f);

@@ -46,6 +46,9 @@ public class BirdMovementTest
                 if (bird != null)
                 {
                     Debug.Log("bird is not null");
+                } 
+                else {
+                    Debug.Log("bird is null");
                 }
 
 
