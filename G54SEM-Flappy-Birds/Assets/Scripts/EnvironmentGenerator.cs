@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnvironmentGenerator : MonoBehaviour 
 {
-
     // Ensure this is initialised in the inspector:
     public GameObject[] backgrounds;
     private GameObject environment;
@@ -23,20 +22,12 @@ public class EnvironmentGenerator : MonoBehaviour
         {
             pipeSpriteChoice = Random.Range(0, backgrounds.Length);
             spawnPosition = new Vector2(0.0f, 0.0f);
-            environment = InstantiateEnvironment() as GameObject;
-        }
-        environmentShows = DoesEnvironmentShow();
-        
+            environment = InstantiateEnvironment();
+        }        
     }
 
-    public Object InstantiateEnvironment()
+    public GameObject InstantiateEnvironment()
     {
         return Instantiate(backgrounds[pipeSpriteChoice], spawnPosition, Quaternion.identity);
-    }
-    
-
-    public bool DoesEnvironmentShow()
-    {
-        return environment != null;
     }
 }
