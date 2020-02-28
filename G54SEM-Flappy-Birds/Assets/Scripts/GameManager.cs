@@ -16,9 +16,6 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverScoreText;
     public TextMeshProUGUI highScoreText;
-    // public Text scoreText;
-    // public Text gameOverScoreText;
-    // public Text highScoreText;
     public BirdMovement bird;
 
     public GameObject pipeGenerator;
@@ -45,7 +42,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject goldMedal;
 
-    //public GameObject birdGenerator;
     public BirdGenerator birdGenerator;
 
     void Start()
@@ -115,7 +111,6 @@ public class GameManager : MonoBehaviour
 
         gameOverScoreText.enabled = false;
         highScoreText.enabled = false;
-        //GoldMedal.enabled = false;
         goldMedal.SetActive(false);
 
         bird.ResetBird();
@@ -178,7 +173,6 @@ public class GameManager : MonoBehaviour
 
         if (SetHighScore())
         {
-            //GoldMedal.enabled = true;
             if (!firstGame)
             {
                 goldMedal.SetActive(true);
