@@ -38,14 +38,14 @@ public class BirdMovement : MonoBehaviour
             {
                 MoveOnInput(rigidBody2D );
             }
-			else
-			{
-                if (rigidBody2D.position.y < birdVerticalPosition)
-                {
-                    // transform.eulerAngles = Vector3.forward * -85;
-                    birdTiltedUpwards = false;
-                }
-            }
+			//else
+			//{
+   //             if (rigidBody2D.position.y < birdVerticalPosition)
+   //             {
+   //                 // transform.eulerAngles = Vector3.forward * -85;
+   //                 birdTiltedUpwards = false;
+   //             }
+   //         }
         }
     }
 
@@ -70,12 +70,12 @@ public class BirdMovement : MonoBehaviour
         }
         Debug.Log("move on input end");
 
-        // if bird is falling, change direction
-        if (!birdTiltedUpwards)
-        {
-            // transform.eulerAngles = Vector3.forward * 25;
-            birdTiltedUpwards = true;
-        }
+        //// if bird is falling, change direction
+        //if (!birdTiltedUpwards)
+        //{
+        //    // transform.eulerAngles = Vector3.forward * 25;
+        //    birdTiltedUpwards = true;
+        //}
         
     }
 
