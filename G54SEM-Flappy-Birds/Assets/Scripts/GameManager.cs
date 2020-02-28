@@ -203,4 +203,10 @@ public class GameManager : MonoBehaviour
         //Debug.Log("GameOver = " + GameOver);
         return gameOver;
     }
+
+    //////// NOT TO BE CALLED UNLESS VIA UNIT TEST /////////
+    public void SetGameOver(bool gameOver)
+    {
+        this.gameOver = gameOver;
+    }
 }
