@@ -5,6 +5,7 @@ using System.Collections;
 
 public class EnvironmentGeneratorTest
 {
+   
 
     [Test]
     public void EnvironmentGeneratorTestSimplePasses()
@@ -19,6 +20,7 @@ public class EnvironmentGeneratorTest
     {
         GameObject gameObject = new GameObject();
         bool environmentShows;
+       
 
         if (gameObject == null)
         {
@@ -30,8 +32,8 @@ public class EnvironmentGeneratorTest
             gameObject.AddComponent<EnvironmentGenerator>();
             if (gameObject.GetComponent<EnvironmentGenerator>() != null)
             {
-                environmentShows = gameObject.GetComponent<EnvironmentGenerator>().DoesEnvironmentShow();
-             
+                GameObject environment = gameObject.GetComponent<EnvironmentGenerator>().InstantiateEnvironment();
+                
             }
             else
             {
