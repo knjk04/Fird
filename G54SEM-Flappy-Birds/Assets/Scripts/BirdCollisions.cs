@@ -23,6 +23,12 @@ public class BirdCollisions : MonoBehaviour
         }
     }
 
+    public bool CheckIfScoreBox(string tag)
+    {
+        GameManager.gameInstance.SetGameOver();
+        return (tag != "score-box");
+    }
+
     public void ResetCollisionSoundEffectPlayed()
     {
         collisionSoundEffectPlayed = false;
