@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     public GameObject goldMedal;
 
     public BirdGenerator birdGenerator;
+    public BirdCollisions birdCollisions;
 
     void Start()
     {
@@ -124,6 +125,7 @@ public class GameManager : MonoBehaviour
 
         birdGenerator.UpdateBirdSprite();
 
+        birdCollisions.ResetCollisionSoundEffectPlayed();
 
         gameOver = false;
     }
