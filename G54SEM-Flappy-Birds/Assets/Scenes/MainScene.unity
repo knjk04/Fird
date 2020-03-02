@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 141654707}
   - component: {fileID: 141654706}
   - component: {fileID: 141654705}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Play Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 167047837}
   - component: {fileID: 167047839}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Get Ready Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 421648229}
   - component: {fileID: 421648228}
   - component: {fileID: 421648227}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Score Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 428222292}
   - component: {fileID: 428222291}
   - component: {fileID: 428222290}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &681545100
 GameObject:
@@ -575,7 +575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 681545101}
   - component: {fileID: 681545102}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Play Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1329,7 +1329,7 @@ GameObject:
   - component: {fileID: 1141104659}
   - component: {fileID: 1141104661}
   - component: {fileID: 1141104660}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Gold Medal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1408,7 +1408,7 @@ GameObject:
   - component: {fileID: 1459040578}
   - component: {fileID: 1459040580}
   - component: {fileID: 1459040579}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: High Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1673,7 +1673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1747226466}
   - component: {fileID: 1747226467}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Game Over Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
