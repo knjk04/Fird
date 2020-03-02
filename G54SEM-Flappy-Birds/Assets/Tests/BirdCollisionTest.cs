@@ -53,7 +53,7 @@ public class BirdCollisionTest
         {
             Debug.Log("bird pos = " + bird.transform.position.y);
         }
-        cleanup(gameManager);
+        Cleanup(gameManager);
     }
 
     [Test]
@@ -94,10 +94,45 @@ public class BirdCollisionTest
             Debug.Log("bird pos = " + bird.transform.position.y);
         }
 
-        cleanup(gameManager);
+        Cleanup(gameManager);
     }
 
-    private void cleanup(GameObject gameObject)
+    [Test]
+    public void BirdCollisionWithPipeTest()
+    {
+        Setup();
+        
+        GameObject pipe = new GameObject();
+        pipe.AddComponent<BoxCollider2D>();
+
+        //create the pipe as same as the pipe object in the game
+        pipe.transform.position = new Vector3(-9.2895f, -2.0678f, 0f);
+        pipe.transform.localScale = new Vector3(1f, 1f, 1f); 
+
+        bird.transform.position = pipe.transform.position;
+        
+        if (bird.transform.position.y == pipe.transform.position.y)
+        {
+            if (bird.GetComponent<BirdCollisions>())
+            {
+                Debug.Log("no bird collision script");
+            }
+
+            bird.GetComponent<BirdCollisions>().CheckIfScoreBox(bird.tag);
+
+            if (!GameManager.gameInstance.IsGameOver())
+            {
+                Debug.Log("bird did not collide the pipe!");
+            }
+        }
+        else
+        {
+            Debug.Log("bird pos = " + bird.transform.position.y);
+        }
+        Cleanup(gameManager);
+    }
+
+    private void Cleanup(GameObject gameObject)
     {
         UnityEngine.Object.DestroyImmediate(gameObject);
     }
