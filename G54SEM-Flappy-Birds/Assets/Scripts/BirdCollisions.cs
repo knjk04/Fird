@@ -27,6 +27,7 @@ public class BirdCollisions : MonoBehaviour
     {
         GameManager.gameInstance.SetGameOver();
         return (tag != "score-box");
+    }
 
     public void ResetCollisionSoundEffectPlayed()
     {
