@@ -6,19 +6,12 @@ public class BirdMovement : MonoBehaviour
 {
 	// ensure these are set in the inspector
 	public Rigidbody2D rigidBody2D;
-    //public float speed;
-    //public float birdVerticalVelocity;
     public AudioSource flap;
 
     private bool birdTiltedUpwards;
     private float birdVerticalPosition;
 
-    //public GameManager GameController;
-
     private Vector3 birdTransform;
-    //private Quaternion BirdRotation;
-
-    //private float rotationSpeed = 1f;
 
     public void Start() 
 	{
@@ -28,9 +21,6 @@ public class BirdMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        //float vertical = Input.GetAxis("Horizontal");
-
         if (!GameManager.gameInstance.IsGameOver())
         {
             // move bird up when user presses
@@ -38,28 +28,16 @@ public class BirdMovement : MonoBehaviour
             {
                 MoveOnInput(rigidBody2D );
             }
-			else
-			{
-                if (rigidBody2D.position.y < birdVerticalPosition)
-                {
-                    // transform.eulerAngles = Vector3.forward * -85;
-                    birdTiltedUpwards = false;
-                }
-            }
         }
     }
 
     public void ResetBird()
     {
         gameObject.transform.position = birdTransform;
-        // transform.rotation = Quaternion.identity;
-        
     }
 
     public void MoveOnInput(Rigidbody2D birdRigidBody)
     {
-        Debug.Log("move on input start");
-
         birdRigidBody.AddForce(new Vector3(0f, 0.6f, 0f), ForceMode2D.Impulse);
 
         birdVerticalPosition = birdRigidBody.position.y;
@@ -67,17 +45,6 @@ public class BirdMovement : MonoBehaviour
         if (flap != null)
         {
             flap.Play();
-        }
-        Debug.Log("move on input end");
-
-        // if bird is falling, change direction
-        if (!birdTiltedUpwards)
-        {
-            // transform.eulerAngles = Vector3.forward * 25;
-            birdTiltedUpwards = true;
-        }
-        
+        }      
     }
-
-
 }
