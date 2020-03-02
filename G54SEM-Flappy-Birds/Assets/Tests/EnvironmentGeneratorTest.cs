@@ -5,7 +5,7 @@ using System.Collections;
 
 public class EnvironmentGeneratorTest
 {
-   
+    public GameObject[] backgrounds;
 
     [Test]
     public void EnvironmentGeneratorTestSimplePasses()
@@ -18,10 +18,10 @@ public class EnvironmentGeneratorTest
     [UnityTest]
     public IEnumerator EnvironmentGeneratorTestWithEnumeratorPasses()
     {
-        GameObject gameObject = new GameObject();
-        bool environmentShows;
-       
 
+
+      GameObject gameObject = new GameObject();
+      GameObject environment = new GameObject();
         if (gameObject == null)
         {
             Debug.Log("game object is null");
@@ -32,8 +32,10 @@ public class EnvironmentGeneratorTest
             gameObject.AddComponent<EnvironmentGenerator>();
             if (gameObject.GetComponent<EnvironmentGenerator>() != null)
             {
-                GameObject environment = gameObject.GetComponent<EnvironmentGenerator>().InstantiateEnvironment();
-                
+               
+                environment = (GameObject)gameObject.GetComponent<EnvironmentGenerator>().InstantiateEnvironment();
+
+               Assert.IsNotNull(environment, "environment is null");
             }
             else
             {
