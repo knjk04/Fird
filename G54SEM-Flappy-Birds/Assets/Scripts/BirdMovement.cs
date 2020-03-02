@@ -38,14 +38,14 @@ public class BirdMovement : MonoBehaviour
             {
                 MoveOnInput(rigidBody2D );
             }
-			else
-			{
-                if (rigidBody2D.position.y < birdVerticalPosition)
-                {
-                    // transform.eulerAngles = Vector3.forward * -85;
-                    birdTiltedUpwards = false;
-                }
-            }
+			//else
+			//{
+   //             if (rigidBody2D.position.y < birdVerticalPosition)
+   //             {
+   //                 // transform.eulerAngles = Vector3.forward * -85;
+   //                 birdTiltedUpwards = false;
+   //             }
+   //         }
         }
     }
 
@@ -58,8 +58,6 @@ public class BirdMovement : MonoBehaviour
 
     public void MoveOnInput(Rigidbody2D birdRigidBody)
     {
-        Debug.Log("move on input start");
-
         birdRigidBody.AddForce(new Vector3(0f, 0.6f, 0f), ForceMode2D.Impulse);
 
         birdVerticalPosition = birdRigidBody.position.y;
@@ -67,16 +65,7 @@ public class BirdMovement : MonoBehaviour
         if (flap != null)
         {
             flap.Play();
-        }
-        Debug.Log("move on input end");
-
-        // if bird is falling, change direction
-        if (!birdTiltedUpwards)
-        {
-            // transform.eulerAngles = Vector3.forward * 25;
-            birdTiltedUpwards = true;
-        }
-        
+        }      
     }
 
 

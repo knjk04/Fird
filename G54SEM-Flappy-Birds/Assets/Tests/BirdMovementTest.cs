@@ -5,13 +5,6 @@ using System.Collections;
 
 public class BirdMovementTest
 {
-
-    [Test]
-    public void BirdMovementTestSimplePasses()
-    {
-        // Use the Assert class to test conditions.
-    }
-
     // A UnityTest behaves like a coroutine in PlayMode
     // and allows you to yield null to skip a frame in EditMode
     [UnityTest]
