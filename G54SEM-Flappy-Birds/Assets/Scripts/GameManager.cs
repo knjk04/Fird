@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Awake()
+    public void Awake()
     {
         if (gameInstance != null && gameInstance != this)
         {
@@ -204,9 +204,9 @@ public class GameManager : MonoBehaviour
         return gameOver;
     }
 
-    //////// NOT TO BE CALLED UNLESS VIA UNIT TEST /////////
-    public void SetGameOver(bool gameOver)
+    // This should only be called if the bird collides with the ceiling, ground or one of the pipes
+    public void SetGameOver()
     {
-        this.gameOver = gameOver;
+        gameOver = true;
     }
 }
