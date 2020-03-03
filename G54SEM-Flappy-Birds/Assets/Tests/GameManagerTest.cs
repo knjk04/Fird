@@ -5,12 +5,18 @@ using System.Collections;
 
 public class GameManagerTest
 {
+    GameObject gameManagerObject;
+    GameManager gameManager;
+
+    public void Setup()
+    {
+        gameManagerObject = new GameObject();
+        gameManagerObject.AddComponent<GameManager>();
+        gameManager = gameManagerObject.GetComponent<GameManager>();
+    }
+
     [Test]
     public void BackgroundAudioPlaysOnStartTest() {
-        // Use the Assert class to test conditions.
-        GameObject gameManagerObject = new GameObject();
-        gameManagerObject.AddComponent<GameManager>();
-        GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
 
         // Add the background audio
         AudioClip backgroundAudioClip = Resources.Load("Audio/background-audio") as AudioClip;
@@ -20,6 +26,16 @@ public class GameManagerTest
  
         gameManager.PlayBackgroundAudioOnGameStart();
         Assert.IsTrue(gameManager.GetBackgroundAudioSource().isPlaying);
+    }
+
+    // Tests High Score
+    [Test]
+    public void HighScoreTest()
+    {
+        int playerScore = gameManager.GetPlayerScore();
+        int highScore = gameManager.GetHighScore();
+        Assert.IsTrue(gameManager.SetHighScore());
+
     }
 
     // A UnityTest behaves like a coroutine in PlayMode

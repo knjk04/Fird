@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -160,14 +161,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Point sound is null");
         }
-        
-
     }
 
     public void EndGame()                          
     {
         Debug.Log("in end game");
-        
 
         // Handles logic when game finishes (bird has crashed)
         gameOverPanel.SetActive(true);
@@ -177,7 +175,6 @@ public class GameManager : MonoBehaviour
         Destroy(pipeScript);
         scoreText.enabled = false;
 
-       
         gameOverScoreText.text = scoreText.text;
         gameOverScoreText.enabled = true;
         highScoreText.enabled = true;
@@ -213,6 +210,18 @@ public class GameManager : MonoBehaviour
     {
         return gameOver;
     }
+
+    public int GetPlayerScore()
+    {
+        return playerScore;
+    }
+
+    public int GetHighScore()
+    {
+        return highScore;
+    }
+
+
 
     // This should only be called if the bird collides with the ceiling, ground or one of the pipes
     public void SetGameOver()
