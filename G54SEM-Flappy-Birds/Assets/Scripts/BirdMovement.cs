@@ -5,6 +5,7 @@ using UnityEngine;
 public class BirdMovement : MonoBehaviour
 {
 	// ensure these are set in the inspector
+
 	public Rigidbody2D rigidBody2D;
     public AudioSource flap;
 
