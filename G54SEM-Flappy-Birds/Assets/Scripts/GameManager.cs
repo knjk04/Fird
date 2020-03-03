@@ -47,17 +47,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        gameOverScoreText.enabled = false;
-        highScoreText.enabled = false;
-
-        if (backgroundAudio != null)
-        {
-            backgroundAudio.Play();
-        }
-        else
-        {
-            Debug.Log("Background audio is null");
-        }
+        InitialSetup();
     }
 
     public void Awake()
@@ -80,11 +70,30 @@ public class GameManager : MonoBehaviour
         if (!gameOver && (Input.GetButtonDown("Fire1") && gameStarted == false))
         {
             Debug.Log("User is ready");
-            SetupGame();
+            PostReadySetup();
         }
     }
 
-    void SetupGame()
+    public void InitialSetup()
+    {
+        gameOverScoreText.enabled = false;
+        highScoreText.enabled = false;
+        PlayBackgroundAudioOnGameStart();
+    }
+
+    public void PlayBackgroundAudioOnGameStart()
+    {
+        if (backgroundAudio != null)
+        {
+            backgroundAudio.Play();
+        }
+        else
+        {
+            Debug.Log("Background audio is null");
+        }
+    }
+
+    void PostReadySetup()
     {
         playButton.gameObject.SetActive(false);
 
@@ -120,7 +129,7 @@ public class GameManager : MonoBehaviour
         playerScore = 0;
         scoreText.text = playerScore.ToString();
         scoreText.enabled = true;
-
+        
         firstGame = false;
 
         birdGenerator.UpdateBirdSprite();
@@ -210,5 +219,16 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("SetGameOver()");
         gameOver = true;
+    }
+
+    public AudioSource GetBackgroundAudioSource()
+    {
+        return backgroundAudio;
+    }
+
+    // For use only in the test suite
+    public void SetAudioSource(AudioSource backgroundAudio)
+    {
+        this.backgroundAudio = backgroundAudio;
     }
 }
