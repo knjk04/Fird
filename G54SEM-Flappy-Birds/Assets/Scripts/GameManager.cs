@@ -202,7 +202,6 @@ public class GameManager : MonoBehaviour
 
     public bool IsGameOver()
     {
-        Debug.Log("GameOver = " + gameOver);
         return gameOver;
     }
 
