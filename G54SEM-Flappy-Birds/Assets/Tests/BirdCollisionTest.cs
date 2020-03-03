@@ -132,6 +132,20 @@ public class BirdCollisionTest
         Cleanup(gameManager);
     }
 
+
+    [Test]
+    public void ScoreResetTest()
+    {
+        int scoreStart = GameManager.gameInstance.GetScore() + 1;
+        //GameManager.gameInstance.UpdateScore();
+        //int scoreEnd = GameManager.gameInstance.GetScore();
+
+        if (!GameManager.instance.IsGameOver())
+        {
+
+        }
+    }
+
     private void Cleanup(GameObject gameObject)
     {
         UnityEngine.Object.DestroyImmediate(gameObject);
