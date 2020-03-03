@@ -3,7 +3,7 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using UnityEngine;
 
-public class DestroyPipeByTimeTest : MonoBehaviour
+public class DestroyPipeByTimeTest
 {
 
     [Test]
@@ -21,42 +21,23 @@ public class DestroyPipeByTimeTest : MonoBehaviour
     }
 
     // Pipes should be destroyed immediately on game over
-    [UnityTest]
-    public IEnumerator DestroyPipesOnGameOverWithEnumeratorPasses()
+    [Test]
+    public void DestroyPipesOnGameOverWithEnumeratorPasses()
     {
         // create pipes
+        GameObject pipeObject = new GameObject();
+        pipeObject.AddComponent<DestroyPipeByTime>();
 
-        // GameObject pipe = new GameObject();
-        Object pipeObject = Resources.Load("Prefabs/PipePrefabs/pipe-set-0");
+        GameObject gameManager = new GameObject();
+        gameManager.AddComponent<GameManager>();
+        gameManager.GetComponent<GameManager>().Awake();
+        GameManager.gameInstance.SetGameOver();
 
-
-        if (pipeObject == null)
+        if (GameManager.gameInstance.IsGameOver())
         {
-            Debug.Log("pipeObject is null");
-        }
-        else
-        {
-            GameObject pipe = new GameObject();
-            pipe.AddComponent<MonoBehaviour>();
-            pipe = Instantiate(pipeObject) as GameObject;
-            if (pipe == null)
-            {
-                Debug.Log("pipe is null");
-            }
+            pipeObject.GetComponent<DestroyPipeByTime>().DestroyPipeImmediately();
         }
 
-        
-
-
-        /*
-        GameManager.gameInstance.SetGameOver(true);
-
-        if(GameManager.gameInstance.IsGameOver())
-        {
-            
-        }
-        */
-
-        return null;
+        Assert.IsTrue(pipeObject == null);
     }
 }

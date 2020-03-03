@@ -202,13 +202,14 @@ public class GameManager : MonoBehaviour
 
     public bool IsGameOver()
     {
-        //Debug.Log("GameOver = " + GameOver);
+        Debug.Log("GameOver = " + gameOver);
         return gameOver;
     }
 
     // This should only be called if the bird collides with the ceiling, ground or one of the pipes
     public void SetGameOver()
     {
+        Debug.Log("SetGameOver()");
         gameOver = true;
     }
 }
