@@ -13,16 +13,16 @@ public class ScoreResetTest {
         gameManager.GetComponent<GameManager>().Awake();
     }
 
-    [Test]
-    public void ScoreResetTestSimplePasses() {
-        int scoreStart = GameManager.gameInstance.GetScore();
-        GameManager.gameInstance.UpdateScore();
-        int scoreEnd = GameManager.gameInstance.GetScore();
+    //[Test]
+    //public void ScoreResetTestSimplePasses() {
+    //    int scoreStart = GameManager.gameInstance.GetScore();
+    //    GameManager.gameInstance.UpdateScore();
+    //    int scoreEnd = GameManager.gameInstance.GetScore();
 
-        if (!GameManager.instance.IsGameOver())
-        {
+    //    if (!GameManager.instance.IsGameOver())
+    //    {
 
-        }
-    }
+    //    }
+    //}
 
 }
