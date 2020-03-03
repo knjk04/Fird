@@ -148,8 +148,9 @@ public class GameManager : MonoBehaviour
 
     public void AddScore()                          
     {
-        Debug.Log("Incrementing score. Score before = " + playerScore + ", score now = " + (playerScore + 1));
-        playerScore++;
+        //Debug.Log("Incrementing score. Score before = " + playerScore + ", score now = " + (playerScore + 1));
+        //playerScore++;
+        UpdateScore();
         // Changes score displayed to user
         scoreText.text = playerScore.ToString();
 
@@ -161,6 +162,16 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Point sound is null");
         }
+    }
+
+    public int GetScore()
+    {
+        return playerScore;
+    }
+
+    public void UpdateScore()
+    {
+        playerScore++;
     }
 
     public void EndGame()                          
