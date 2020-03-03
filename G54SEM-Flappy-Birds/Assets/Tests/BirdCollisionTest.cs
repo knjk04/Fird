@@ -136,14 +136,14 @@ public class BirdCollisionTest
     [Test]
     public void ScoreResetTest()
     {
-        int scoreStart = GameManager.gameInstance.GetScore() + 1;
-        //GameManager.gameInstance.UpdateScore();
-        //int scoreEnd = GameManager.gameInstance.GetScore();
+        Setup();
+        GameManager.gameInstance.UpdateScore(); // 1
+        int scoreEnd = GameManager.gameInstance.GetScore(); // 1
 
-        if (!GameManager.instance.IsGameOver())
-        {
+        GameManager.gameInstance.ResetScore();
+        scoreEnd = GameManager.gameInstance.GetScore(); // 0
 
-        }
+        Assert.AreEqual(scoreEnd, 0);
     }
 
     private void Cleanup(GameObject gameObject)

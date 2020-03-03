@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
         bird.ResetBird();
         birdRigidBody2D.gravityScale = 0f;
 
-        GetResetScore();
+        ResetScore();
 
         scoreText.text = playerScore.ToString();
         scoreText.enabled = true;
@@ -141,9 +141,9 @@ public class GameManager : MonoBehaviour
         gameOver = false;
     }
 
-    public int GetResetScore()
+    public void ResetScore()
     {
-        return playerScore;
+         playerScore = 0;
     }
 
     public void RunGame()
