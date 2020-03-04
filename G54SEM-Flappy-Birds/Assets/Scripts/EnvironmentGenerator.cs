@@ -17,10 +17,10 @@ public class EnvironmentGenerator : MonoBehaviour
         }
         else
         {
-            int PipeSpriteChoice = Random.Range(0, backgrounds.Length);
+            int BGSpriteChoice = Random.Range(0, backgrounds.Length);
             Vector2 SpawnPosition = new Vector2(0.0f, 0.0f);
             Quaternion Rotation = Quaternion.identity;
-            GameObject Env = Instantiate(backgrounds[PipeSpriteChoice], SpawnPosition, Rotation);
+            GameObject Env = Instantiate(backgrounds[BGSpriteChoice], SpawnPosition, Rotation);
         }
     }
 }
