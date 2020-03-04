@@ -2,23 +2,46 @@
 
 public class DestroyPipeByTime : MonoBehaviour 
 {
+    private GameObject pipe;
+    public GameObject parentObject;
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
+        if (gameObject == null)
+        {
+            Debug.Log("pipe game object is null");
+        }
+        else
+        {
+            Debug.Log("pipe game object is not null");
+        }
+
+        DestroyPipes();
+    }
+
+    public void DestroyPipes()
+    {
+        SaveParentObject();
         if (GameManager.gameInstance.IsGameOver())
         {
             DestroyPipeImmediately();
         }
         else
         {
-            Destroy(gameObject, 8);
+            Destroy(pipe, 8);
         }
+    }
+
+    public void SaveParentObject()
+    {
+        pipe = parentObject;
+
     }
 
     public void DestroyPipeImmediately()
     {
         Debug.Log("DestroyPipeImmediately()");
-        Object.DestroyImmediate(gameObject);
+        DestroyImmediate(pipe, true);
     }
 }
