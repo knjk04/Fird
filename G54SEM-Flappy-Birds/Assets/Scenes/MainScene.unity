@@ -1088,6 +1088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody2D: {fileID: 1107260538}
   flap: {fileID: 1107260543}
+  verticalSpeedAdd: 4
 --- !u!212 &1107260536
 SpriteRenderer:
   m_ObjectHideFlags: 0
