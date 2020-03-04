@@ -9,10 +9,14 @@ public class BirdMovement : MonoBehaviour
 	public Rigidbody2D rigidBody2D;
     public AudioSource flap;
 
+    public float verticalSpeedAdd = 4.0f;
+
     private bool birdTiltedUpwards;
     private float birdVerticalPosition;
 
     private Vector3 birdTransform;
+    
+    private bool pressed = false;
 
     public void Start() 
 	{
@@ -25,10 +29,41 @@ public class BirdMovement : MonoBehaviour
         if (!GameManager.gameInstance.IsGameOver())
         {
             // move bird up when user presses
-            if (Input.GetButton("Fire1"))
+            if (Input.GetButton("Fire1") && !pressed)
             {
-                MoveOnInput(rigidBody2D );
+                //Debug.Log("I believe I can fly");
+                pressed = true;
+
+                Vector3 v = rigidBody2D.velocity;
+                rigidBody2D.AddForce(-v, ForceMode2D.Impulse);
+                rigidBody2D.AddForce(new Vector3(0f, verticalSpeedAdd, 0f), ForceMode2D.Impulse);
+
+				birdVerticalPosition = rigidBody2D.position.y;
+
+                flap.Play();
+
+                // if bird is falling, change direction
+                if (!birdTiltedUpwards)
+                {
+                    // transform.eulerAngles = Vector3.forward * 25;
+                    birdTiltedUpwards = true;
+                }
             }
+			else
+			{
+                /*
+                if (rigidBody2D.position.y < birdVerticalPosition)
+                {
+                    // transform.eulerAngles = Vector3.forward * -85;
+                    birdTiltedUpwards = false;
+                }
+                */
+                if (!Input.GetButton("Fire1"))
+                {
+                    pressed = false;
+                }
+            }
+            
         }
     }
 
