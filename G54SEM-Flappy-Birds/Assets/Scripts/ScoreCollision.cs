@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
+// Detects whether there is a collision between the bird and the score box
 public class ScoreCollision : MonoBehaviour
 {
-
     // function to add score once bird passes through gap in pipes
     void OnTriggerExit2D(Collider2D other)
     {
