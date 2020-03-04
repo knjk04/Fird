@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour
     public static GameManager gameInstance;
 
     public GameObject gameOverPanel;
-    
+
     // score text
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverScoreText;
@@ -42,25 +43,15 @@ public class GameManager : MonoBehaviour
 
     public GameObject goldMedal;
 
-    //public GameObject birdGenerator;
     public BirdGenerator birdGenerator;
+    public BirdCollisions birdCollisions;
 
     void Start()
     {
-        gameOverScoreText.enabled = false;
-        highScoreText.enabled = false;
-
-        if (backgroundAudio != null)
-        {
-            backgroundAudio.Play();
-        }
-        else
-        {
-            Debug.Log("Background audio is null");
-        }
+        InitialSetup();
     }
 
-    void Awake()
+    public void Awake()
     {
         if (gameInstance != null && gameInstance != this)
         {
@@ -80,11 +71,30 @@ public class GameManager : MonoBehaviour
         if (!gameOver && (Input.GetButtonDown("Fire1") && gameStarted == false))
         {
             Debug.Log("User is ready");
-            SetupGame();
+            PostReadySetup();
         }
     }
 
-    void SetupGame()
+    public void InitialSetup()
+    {
+        gameOverScoreText.enabled = false;
+        highScoreText.enabled = false;
+        PlayBackgroundAudioOnGameStart();
+    }
+
+    public void PlayBackgroundAudioOnGameStart()
+    {
+        if (backgroundAudio != null)
+        {
+            backgroundAudio.Play();
+        }
+        else
+        {
+            Debug.Log("Background audio is null");
+        }
+    }
+
+    void PostReadySetup()
     {
         playButton.gameObject.SetActive(false);
 
@@ -95,15 +105,6 @@ public class GameManager : MonoBehaviour
 
         // Introduce gravity and allow bird to fall
         birdRigidBody2D.gravityScale = 1f;
-
-        //if (backgroundAudio != null)
-        //{
-        //    backgroundAudio.Play();
-        //}
-        //else
-        //{
-        //    Debug.Log("Background audio is null");
-        //}
 
         // Start pipe generation
         Vector2 spawnPosition = new Vector2(0.0f, 0.0f);
@@ -121,22 +122,28 @@ public class GameManager : MonoBehaviour
 
         gameOverScoreText.enabled = false;
         highScoreText.enabled = false;
-        //GoldMedal.enabled = false;
         goldMedal.SetActive(false);
 
         bird.ResetBird();
         birdRigidBody2D.gravityScale = 0f;
 
-        playerScore = 0;
+        ResetScore();
+
         scoreText.text = playerScore.ToString();
         scoreText.enabled = true;
-
+        
         firstGame = false;
 
         birdGenerator.UpdateBirdSprite();
 
+        birdCollisions.ResetCollisionSoundEffectPlayed();
 
         gameOver = false;
+    }
+
+    public void ResetScore()
+    {
+         playerScore = 0;
     }
 
     public void RunGame()
@@ -147,8 +154,9 @@ public class GameManager : MonoBehaviour
 
     public void AddScore()                          
     {
-        Debug.Log("Incrementing score. Score before = " + playerScore + ", score now = " + (playerScore + 1));
-        playerScore++;
+        //Debug.Log("Incrementing score. Score before = " + playerScore + ", score now = " + (playerScore + 1));
+        //playerScore++;
+        UpdateScore();
         // Changes score displayed to user
         scoreText.text = playerScore.ToString();
 
@@ -160,14 +168,21 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Point sound is null");
         }
-        
+    }
 
+    public int GetScore()
+    {
+        return playerScore;
+    }
+
+    public void UpdateScore()
+    {
+        playerScore++;
     }
 
     public void EndGame()                          
     {
         Debug.Log("in end game");
-        
 
         // Handles logic when game finishes (bird has crashed)
         gameOverPanel.SetActive(true);
@@ -177,14 +192,12 @@ public class GameManager : MonoBehaviour
         Destroy(pipeScript);
         scoreText.enabled = false;
 
-       
         gameOverScoreText.text = scoreText.text;
         gameOverScoreText.enabled = true;
         highScoreText.enabled = true;
 
         if (SetHighScore())
         {
-            //GoldMedal.enabled = true;
             if (!firstGame)
             {
                 goldMedal.SetActive(true);
@@ -200,7 +213,7 @@ public class GameManager : MonoBehaviour
         playButton.gameObject.SetActive(true);
     }
 
-    bool SetHighScore()
+    public bool SetHighScore()
     {
         if (highScore < playerScore)
         {
@@ -212,7 +225,36 @@ public class GameManager : MonoBehaviour
 
     public bool IsGameOver()
     {
-        //Debug.Log("GameOver = " + GameOver);
         return gameOver;
+    }
+
+    public int GetPlayerScore()
+    {
+        return playerScore;
+    }
+
+    public int GetHighScore()
+    {
+        return highScore;
+    }
+
+
+
+    // This should only be called if the bird collides with the ceiling, ground or one of the pipes
+    public void SetGameOver()
+    {
+        Debug.Log("SetGameOver()");
+        gameOver = true;
+    }
+
+    public AudioSource GetBackgroundAudioSource()
+    {
+        return backgroundAudio;
+    }
+
+    // For use only in the test suite
+    public void SetAudioSource(AudioSource backgroundAudio)
+    {
+        this.backgroundAudio = backgroundAudio;
     }
 }
