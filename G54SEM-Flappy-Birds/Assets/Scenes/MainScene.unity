@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 141654707}
   - component: {fileID: 141654706}
   - component: {fileID: 141654705}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Play Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 167047837}
   - component: {fileID: 167047839}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Get Ready Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 421648229}
   - component: {fileID: 421648228}
   - component: {fileID: 421648227}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Score Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,11 +422,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 428222292}
   - component: {fileID: 428222291}
   - component: {fileID: 428222290}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &681545100
 GameObject:
@@ -575,7 +575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 681545101}
   - component: {fileID: 681545102}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Play Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,6 +811,11 @@ Prefab:
       propertyPath: m_Volume
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: birdCollisions
+      value: 
+      objectReference: {fileID: 1107260540}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8913545744df0c4cb0675fa24b84ee1, type: 2}
   m_IsPrefabAsset: 0
@@ -1062,6 +1067,7 @@ GameObject:
   - component: {fileID: 1107260541}
   - component: {fileID: 1107260542}
   - component: {fileID: 1107260543}
+  - component: {fileID: 1107260544}
   m_Layer: 0
   m_Name: Bird Generator
   m_TagString: Player
@@ -1188,6 +1194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42464677a46cabf479c58f0585eb7801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisonSoundEffect: {fileID: 1107260544}
 --- !u!114 &1107260541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1320,6 +1327,101 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &1107260544
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1107260534}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1ca6660eff6a2054e89786bc74108d65, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1141104658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,7 +1432,7 @@ GameObject:
   - component: {fileID: 1141104659}
   - component: {fileID: 1141104661}
   - component: {fileID: 1141104660}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Gold Medal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1409,7 +1511,7 @@ GameObject:
   - component: {fileID: 1459040578}
   - component: {fileID: 1459040580}
   - component: {fileID: 1459040579}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: High Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1674,7 +1776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1747226466}
   - component: {fileID: 1747226467}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Game Over Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
