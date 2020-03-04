@@ -10,8 +10,8 @@ using NUnit.Framework;
 	[UnityTest]
     public IEnumerator DestroyPipeBySecondsTestWithEnumeratorPasses()
 	{
-
-        GameObject pipe = Resources.Load("Prefabs/PipePrefabs/pipe-set-0") as GameObject;
+        GameObject memPipe = Resources.Load("Prefabs/PipePrefabs/pipe-set-test") as GameObject;
+        GameObject pipe = Object.Instantiate(memPipe);
 
         if (pipe == null)
         {
@@ -26,11 +26,13 @@ using NUnit.Framework;
         GameManager gameManager = pipe.GetComponent<GameManager>();
         gameManager.GetComponent<GameManager>().Awake();
 
-        pipe.GetComponent<DestroyPipeByTime>().DestroyPipeImmediately();
+        DestroyPipeByTime destroyPipeByTime = pipe.GetComponent<DestroyPipeByTime>();
+
+        destroyPipeByTime.SaveParentObject();
+        destroyPipeByTime.DestroyPipeImmediately();
 
         // wait 8 seconds
-        yield return new WaitForSeconds(9);
-
+        yield return new WaitForSeconds(9);;
 
         // check destroyed
         if (pipe == null)
@@ -42,5 +44,6 @@ using NUnit.Framework;
         }
 
         Assert.IsTrue(pipe == null);
+        yield return null;
     }
 }
