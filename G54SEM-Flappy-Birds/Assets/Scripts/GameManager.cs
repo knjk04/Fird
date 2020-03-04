@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
         playButton.gameObject.SetActive(true);
     }
 
-    bool SetHighScore()
+    public bool SetHighScore()
     {
         if (highScore < playerScore)
         {

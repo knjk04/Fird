@@ -16,8 +16,9 @@ public class GameManagerTest
     }
 
     [Test]
-    public void BackgroundAudioPlaysOnStartTest() {
-
+    public void BackgroundAudioPlaysOnStartTest()
+    {
+        Setup();
         // Add the background audio
         AudioClip backgroundAudioClip = Resources.Load("Audio/background-audio") as AudioClip;
         AudioSource audioSource = gameManagerObject.AddComponent<AudioSource>();
@@ -28,10 +29,10 @@ public class GameManagerTest
         Assert.IsTrue(gameManager.GetBackgroundAudioSource().isPlaying);
     }
 
-    // Tests High Score
     [Test]
-    public void HighScoreTest()
+    public void HighScoreUpdatedTest()
     {
+        Setup();
         int playerScore = gameManager.GetPlayerScore();
         int highScore = gameManager.GetHighScore();
         Assert.IsTrue(gameManager.SetHighScore());
