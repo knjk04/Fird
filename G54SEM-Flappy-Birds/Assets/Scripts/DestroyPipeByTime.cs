@@ -19,6 +19,7 @@ public class DestroyPipeByTime : MonoBehaviour
     public void DestroyPipeImmediately()
     {
         Debug.Log("DestroyPipeImmediately()");
-        Object.DestroyImmediate(gameObject);
+        Object.DestroyImmediate(gameObject, true);
+        //Destroy(gameObject);
     }
 }

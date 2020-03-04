@@ -5,34 +5,35 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 
 
-public class DestroyPipeBySecondsTest : MonoBehaviour {
-
-	// Use this for initialization
-	void Start() {
-
-	}
-
-	// Update is called once per frame
-	void Update() {
-
-	}
-
+ public class DestroyPipeBySecondsTest
+{ 
 	[UnityTest]
     public IEnumerator DestroyPipeBySecondsTestWithEnumeratorPasses()
 	{
-        GameObject pipeObject = new GameObject();
-        pipeObject.AddComponent<DestroyPipeByTime>();
 
-        GameObject gameManager = new GameObject();
-        gameManager.AddComponent<GameManager>();
+        GameObject pipe = Resources.Load("Prefabs/PipePrefabs/pipe-set-0") as GameObject;
+
+        if (pipe == null)
+        {
+            Debug.Log("null pipe");
+        }
+        else
+        {
+            Debug.Log("pipe is not null");
+        }
+
+        pipe.AddComponent<GameManager>();
+        GameManager gameManager = pipe.GetComponent<GameManager>();
         gameManager.GetComponent<GameManager>().Awake();
+
+        pipe.GetComponent<DestroyPipeByTime>().DestroyPipeImmediately();
 
         // wait 8 seconds
         yield return new WaitForSeconds(9);
 
 
         // check destroyed
-        if(pipeObject == null)
+        if (pipe == null)
         {
             Debug.Log("pipeObject successfully destroyed after 8 seconds");
         } else
@@ -40,6 +41,6 @@ public class DestroyPipeBySecondsTest : MonoBehaviour {
             Debug.Log("pipeObject not destroyed after 8 seconds");
         }
 
-        Assert.IsTrue(pipeObject == null);
-	}
+        Assert.IsTrue(pipe == null);
+    }
 }

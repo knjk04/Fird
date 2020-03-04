@@ -37,7 +37,6 @@ GameObject:
   - component: {fileID: 4059032289213242}
   - component: {fileID: 61987415732896992}
   - component: {fileID: 114516291326937340}
-  - component: {fileID: 114938562870766980}
   m_Layer: 0
   m_Name: Score box
   m_TagString: score-box
@@ -250,17 +249,6 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1905012879325672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0639bc51bca44f42be1fb5218a6457d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114938562870766980
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1761793912240672}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0639bc51bca44f42be1fb5218a6457d, type: 3}
