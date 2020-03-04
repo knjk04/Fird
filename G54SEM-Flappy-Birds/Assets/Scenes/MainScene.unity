@@ -816,6 +816,11 @@ Prefab:
       propertyPath: birdCollisions
       value: 
       objectReference: {fileID: 1107260540}
+    - target: {fileID: 114150002193674738, guid: a8913545744df0c4cb0675fa24b84ee1,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8913545744df0c4cb0675fa24b84ee1, type: 2}
   m_IsPrefabAsset: 0
@@ -1088,6 +1093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody2D: {fileID: 1107260538}
   flap: {fileID: 1107260543}
+  verticalSpeedAdd: 4
 --- !u!212 &1107260536
 SpriteRenderer:
   m_ObjectHideFlags: 0
