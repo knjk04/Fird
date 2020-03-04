@@ -1074,7 +1074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1107260535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,6 +1088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody2D: {fileID: 1107260538}
   flap: {fileID: 1107260543}
+  verticalSpeedAdd: 4
 --- !u!212 &1107260536
 SpriteRenderer:
   m_ObjectHideFlags: 0
