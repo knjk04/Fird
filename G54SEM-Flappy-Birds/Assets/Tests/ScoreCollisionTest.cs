@@ -35,7 +35,7 @@ public class ScoreCollisionTest
         int scoreBeforeCollision = GameManager.gameInstance.GetScore();
         if (bird.transform.position.x > scoreBox.transform.position.x)
         {
-            GameManager.gameInstance.UpdateScore();
+            GameManager.gameInstance.AddScore();
             int scoreAfterCollision = GameManager.gameInstance.GetScore();
             Assert.AreEqual(scoreBeforeCollision+1, scoreAfterCollision);
         }

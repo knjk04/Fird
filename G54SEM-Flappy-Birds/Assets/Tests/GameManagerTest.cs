@@ -33,7 +33,7 @@ public class GameManagerTest
     public void HighScoreUpdatedTest()
     {
         Setup();
-        gameManager.UpdateScore();
+        gameManager.AddScore();
         Assert.IsTrue(gameManager.SetHighScore());
     }
 }

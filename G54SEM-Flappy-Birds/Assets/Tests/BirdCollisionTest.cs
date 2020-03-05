@@ -42,7 +42,7 @@ public class BirdCollisionTest
                 Debug.Log("no bird collision script");
             }
 
-            bird.GetComponent<BirdCollisions>().CheckIfScoreBox(bird.tag);
+            bird.GetComponent<BirdCollisions>().CheckIfNotScoreBox(bird.tag);
 
             if (!GameManager.gameInstance.IsGameOver())
             {
@@ -81,7 +81,7 @@ public class BirdCollisionTest
                 Debug.Log("bird collision script");
             }
 
-            bird.GetComponent<BirdCollisions>().CheckIfScoreBox(bird.tag);
+            bird.GetComponent<BirdCollisions>().CheckIfNotScoreBox(bird.tag);
 
             if (!GameManager.gameInstance.IsGameOver())
             {
@@ -118,7 +118,7 @@ public class BirdCollisionTest
                 Debug.Log("no bird collision script");
             }
 
-            bird.GetComponent<BirdCollisions>().CheckIfScoreBox(bird.tag);
+            bird.GetComponent<BirdCollisions>().CheckIfNotScoreBox(bird.tag);
 
             if (!GameManager.gameInstance.IsGameOver())
             {
@@ -137,7 +137,7 @@ public class BirdCollisionTest
     public void ScoreResetTest()
     {
         Setup();
-        GameManager.gameInstance.UpdateScore(); // 1
+        GameManager.gameInstance.AddScore(); // 1
         int scoreEnd = GameManager.gameInstance.GetScore(); // 1
 
         GameManager.gameInstance.ResetScore();
