@@ -18,7 +18,7 @@ public class DestroyPipeByTime : MonoBehaviour
     public void DestroyPipes()
     {
         SaveParentObject();
-        // Destorys all pipes when game ends
+        // Destroys all pipes when game ends
         if (GameManager.gameInstance.IsGameOver())
         {
             DestroyPipeImmediately();
