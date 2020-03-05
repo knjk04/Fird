@@ -15,6 +15,9 @@ public class GameManagerTest
         gameManager = gameManagerObject.GetComponent<GameManager>();
     }
 
+    /// <summary>
+    /// Tests whether background audio is playing when game is started.
+    /// </summary>
     [Test]
     public void BackgroundAudioPlaysOnStartTest()
     {
@@ -29,11 +32,14 @@ public class GameManagerTest
         Assert.IsTrue(gameManager.GetBackgroundAudioSource().isPlaying);
     }
 
+    /// <summary>
+    /// Tests whether High Score setter function works.
+    /// </summary>
     [Test]
     public void HighScoreUpdatedTest()
     {
         Setup();
-        gameManager.UpdateScore();
+        gameManager.AddScore();
         Assert.IsTrue(gameManager.SetHighScore());
     }
 }
