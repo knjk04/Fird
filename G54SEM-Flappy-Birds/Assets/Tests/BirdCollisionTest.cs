@@ -31,9 +31,16 @@ public class BirdCollisionTest
         GameObject ceiling = new GameObject();
         ceiling.AddComponent<BoxCollider2D>();
 
+        float positionHorizontal = 0f;
+        float positionVertical = 4f;
+        float positionDepth = 0f;
+        float localScaleHorizontal = 1.75f;
+        float localScaleVertical = 0.429f;
+        float localScaleDepth = 1f;
+
         //create the ceiling as same as the ceiling object in the game
-        ceiling.transform.position = new Vector3(0f, 4f, 0f);
-        ceiling.transform.localScale = new Vector3(1.75f, 0.492f, 1f); 
+        ceiling.transform.position = new Vector3(positionHorizontal, positionVertical, positionDepth);
+        ceiling.transform.localScale = new Vector3(localScaleHorizontal, localScaleVertical, localScaleDepth); 
 
         bird.transform.position = ceiling.transform.position;
         
@@ -45,7 +52,7 @@ public class BirdCollisionTest
         }
         else
         {
-            Debug.Log("bird pos = " + bird.transform.position.y);
+            Debug.LogError("bird pos = " + bird.transform.position.y);
         }
         Cleanup(gameManager);
     }
@@ -61,9 +68,16 @@ public class BirdCollisionTest
         GameObject ground = new GameObject();
         ground.AddComponent<BoxCollider2D>();
 
+        float positionHorizontal = 0f;
+        float positionVertical = -3.2f;
+        float positionDepth = 0f;
+        float localScaleHorizontal = 1.75f;
+        float localScaleVertical = 1.85f;
+        float localScaleDepth = 1f;
+
         // Create the ground as same as the ground object in the game
-        ground.transform.position = new Vector3(0f, -3.2f, 0f);
-        ground.transform.localScale = new Vector3(1.75f, 1.85f, 1f);
+        ground.transform.position = new Vector3(positionHorizontal, positionVertical, positionDepth);
+        ground.transform.localScale = new Vector3(localScaleHorizontal, localScaleVertical, localScaleDepth);
 
         bird.transform.position = ground.transform.position;
 
@@ -75,7 +89,7 @@ public class BirdCollisionTest
         }
         else
         {
-            Debug.Log("bird pos = " + bird.transform.position.y);
+            Debug.LogError("bird pos = " + bird.transform.position.y);
         }
 
         Cleanup(gameManager);
@@ -92,9 +106,16 @@ public class BirdCollisionTest
         GameObject pipe = new GameObject();
         pipe.AddComponent<BoxCollider2D>();
 
+        float positionHorizontal = -9.2895f;
+        float positionVertical = -2.0678f;
+        float positionDepth = 0f;
+        float localScaleHorizontal = 1f;
+        float localScaleVertical = 1f;
+        float localScaleDepth = 1f;
+
         //create the pipe as same as the pipe object in the game
-        pipe.transform.position = new Vector3(-9.2895f, -2.0678f, 0f);
-        pipe.transform.localScale = new Vector3(1f, 1f, 1f); 
+        pipe.transform.position = new Vector3(positionHorizontal, positionVertical, positionDepth);
+        pipe.transform.localScale = new Vector3(localScaleHorizontal, localScaleVertical, localScaleDepth);
 
         bird.transform.position = pipe.transform.position;
         
@@ -106,7 +127,7 @@ public class BirdCollisionTest
         }
         else
         {
-            Debug.Log("bird pos = " + bird.transform.position.y);
+            Debug.LogError("bird pos = " + bird.transform.position.y);
         }
         Cleanup(gameManager);
     }
@@ -127,6 +148,10 @@ public class BirdCollisionTest
         Assert.AreEqual(scoreEnd, 0);
     }
 
+    /// <summary>
+    /// Destroys object being tested once testing has finished.
+    /// </summary>
+    /// <param name="gameObject">Game object being tested and subsequently deleted.</param>
     private void Cleanup(GameObject gameObject)
     {
         UnityEngine.Object.DestroyImmediate(gameObject);

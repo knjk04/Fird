@@ -36,7 +36,6 @@ public class ScoreCollisionTest
         float localScaleVertical = 1.460156f;
         float localScaleDepth = 1f;
 
-
         //create the ScoreBox as same as the ceiling object in the game
         scoreBox.transform.position = new Vector3(positionHorizontal, positionVertical, positionDepth);
         scoreBox.transform.localScale = new Vector3(localScaleHorizontal, localScaleVertical, localScaleDepth);
@@ -44,6 +43,9 @@ public class ScoreCollisionTest
         bird.transform.position = scoreBox.transform.position + scoreBox.transform.localScale / 2;
 
         int scoreBeforeCollision = GameManager.gameInstance.GetScore();
+        // If bird is higher than the bottom of the box then add 1 to score.
+        // Note if bird is higher than the box, it will hit the pipe and
+        // the game will end.
         if (bird.transform.position.x > scoreBox.transform.position.x)
         {
             GameManager.gameInstance.AddScore();
