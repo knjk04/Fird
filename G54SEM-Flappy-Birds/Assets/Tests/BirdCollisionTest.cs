@@ -19,6 +19,9 @@ public class BirdCollisionTest
         gameManager.GetComponent<GameManager>().Awake();
     }
 
+    /// <summary>
+    /// Tests logic of collision of bird with ceiling.
+    /// </summary>
     [Test]
     public void BirdCollisionWithCeilingTest()
     {
@@ -34,20 +37,11 @@ public class BirdCollisionTest
 
         bird.transform.position = ceiling.transform.position;
         
-
         if (bird.transform.position.y == ceiling.transform.position.y)
         {
-            if (bird.GetComponent<BirdCollisions>())
-            {
-                Debug.Log("no bird collision script");
-            }
-
             bird.GetComponent<BirdCollisions>().CheckIfNotScoreBox(bird.tag);
 
-            if (!GameManager.gameInstance.IsGameOver())
-            {
-                Debug.Log("bird did not collide the ceiling!");
-            }
+            Assert.IsTrue(GameManager.gameInstance.IsGameOver());
         }
         else
         {
@@ -56,6 +50,9 @@ public class BirdCollisionTest
         Cleanup(gameManager);
     }
 
+    /// <summary>
+    /// Tests logic of bird colliding with ground.
+    /// </summary>
     [Test]
     public void BirdCollisionWithGroundTest()
     {
@@ -64,7 +61,7 @@ public class BirdCollisionTest
         GameObject ground = new GameObject();
         ground.AddComponent<BoxCollider2D>();
 
-        //create the ground as same as the ground object in the game
+        // Create the ground as same as the ground object in the game
         ground.transform.position = new Vector3(0f, -3.2f, 0f);
         ground.transform.localScale = new Vector3(1.75f, 1.85f, 1f);
 
@@ -72,22 +69,9 @@ public class BirdCollisionTest
 
         if (bird.transform.position.y == ground.transform.position.y)
         {
-            if (bird.GetComponent<BirdCollisions>())
-            {
-                Debug.Log("no bird collision script");
-            }
-            else
-            {
-                Debug.Log("bird collision script");
-            }
-
             bird.GetComponent<BirdCollisions>().CheckIfNotScoreBox(bird.tag);
 
-            if (!GameManager.gameInstance.IsGameOver())
-            {
-                Debug.Log("bird did not collide the ground!");
-            }
-
+            Assert.IsTrue(GameManager.gameInstance.IsGameOver());
         }
         else
         {
@@ -97,6 +81,9 @@ public class BirdCollisionTest
         Cleanup(gameManager);
     }
 
+    /// <summary>
+    /// Tests logic of bird colliding with pipes.
+    /// </summary>
     [Test]
     public void BirdCollisionWithPipeTest()
     {
@@ -112,18 +99,10 @@ public class BirdCollisionTest
         bird.transform.position = pipe.transform.position;
         
         if (bird.transform.position.y == pipe.transform.position.y)
-        {
-            if (bird.GetComponent<BirdCollisions>())
-            {
-                Debug.Log("no bird collision script");
-            }
-
+        { 
             bird.GetComponent<BirdCollisions>().CheckIfNotScoreBox(bird.tag);
 
-            if (!GameManager.gameInstance.IsGameOver())
-            {
-                Debug.Log("bird did not collide the pipe!");
-            }
+            Assert.IsTrue(GameManager.gameInstance.IsGameOver());
         }
         else
         {
@@ -132,7 +111,9 @@ public class BirdCollisionTest
         Cleanup(gameManager);
     }
 
-
+    /// <summary>
+    /// Test checks whether score is reset correctly.
+    /// </summary>
     [Test]
     public void ScoreResetTest()
     {

@@ -19,6 +19,9 @@ public class ScoreCollisionTest
         gameManager.GetComponent<GameManager>().Awake();
     }
 
+    /// <summary>
+    /// Function tests logic when player collides with a scorebox.
+    /// </summary>
     [Test]
     public void ScoreCollisionTests() {
         Setup();
@@ -26,9 +29,17 @@ public class ScoreCollisionTest
         GameObject scoreBox = new GameObject();
         scoreBox.AddComponent<BoxCollider2D>();
 
+        float positionHorizontal = 1.997f;
+        float positionVertical = 1.42f;
+        float positionDepth = 0.002211373f;
+        float localScaleHorizontal = 0.3971875f;
+        float localScaleVertical = 1.460156f;
+        float localScaleDepth = 1f;
+
+
         //create the ScoreBox as same as the ceiling object in the game
-        scoreBox.transform.position = new Vector3(1.997f, 1.42f, 0.002211373f);
-        scoreBox.transform.localScale = new Vector3(0.3971875f, 1.460156f, 1f);
+        scoreBox.transform.position = new Vector3(positionHorizontal, positionVertical, positionDepth);
+        scoreBox.transform.localScale = new Vector3(localScaleHorizontal, localScaleVertical, localScaleDepth);
 
         bird.transform.position = scoreBox.transform.position + scoreBox.transform.localScale / 2;
 
@@ -41,7 +52,7 @@ public class ScoreCollisionTest
         }
         else
         {
-            Debug.Log("Score not added");
+            Debug.LogError("Score not added");
         }   
     }
 }
