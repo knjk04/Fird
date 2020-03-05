@@ -154,8 +154,6 @@ public class GameManager : MonoBehaviour
 
     public void AddScore()                          
     {
-        //Debug.Log("Incrementing score. Score before = " + playerScore + ", score now = " + (playerScore + 1));
-        //playerScore++;
         UpdateScore();
         // Changes score displayed to user
         scoreText.text = playerScore.ToString();
@@ -182,16 +180,16 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()                          
     {
-        Debug.Log("in end game");
-
         // Handles logic when game finishes (bird has crashed)
         gameOverPanel.SetActive(true);
         gameOver = true;
         gameStarted = false;
+
         // Stop pipe creation script
         Destroy(pipeScript);
         scoreText.enabled = false;
 
+        // Show game over UI objects and score
         gameOverScoreText.text = scoreText.text;
         gameOverScoreText.enabled = true;
         highScoreText.enabled = true;
@@ -203,7 +201,6 @@ public class GameManager : MonoBehaviour
                 goldMedal.SetActive(true);
             }
  
-            Debug.Log("Show the medal");
             highScoreText.text = scoreText.text;
         }
         else
@@ -238,12 +235,9 @@ public class GameManager : MonoBehaviour
         return highScore;
     }
 
-
-
     // This should only be called if the bird collides with the ceiling, ground or one of the pipes
     public void SetGameOver()
     {
-        Debug.Log("SetGameOver()");
         gameOver = true;
     }
 

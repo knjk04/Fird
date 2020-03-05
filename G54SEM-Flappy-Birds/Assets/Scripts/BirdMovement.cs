@@ -6,15 +6,13 @@ public class BirdMovement : MonoBehaviour
 
 	public Rigidbody2D rigidBody2D;
     public AudioSource flap;
-
-    public float verticalSpeedAdd = 4.0f;
-
-    private bool birdTiltedUpwards;
-    private float birdVerticalPosition;
-
     private Vector3 birdTransform;
-    
+    public float verticalSpeedAdd = 4.0f;
     private bool pressed = false;
+    private bool birdTiltedUpwards;
+
+    // to be removed as not value assigned is never read
+    private float birdVerticalPosition;
 
     public void Start() 
 	{
@@ -29,9 +27,10 @@ public class BirdMovement : MonoBehaviour
             // move bird up when user presses
             if (Input.GetButton("Fire1") && !pressed)
             {
-                //Debug.Log("I believe I can fly");
                 pressed = true;
 
+                // does this need to be put in the MoveOnInput() method?
+                // the tests are running different logic otherwise
                 Vector3 v = rigidBody2D.velocity;
                 rigidBody2D.AddForce(-v, ForceMode2D.Impulse);
                 rigidBody2D.AddForce(new Vector3(0f, verticalSpeedAdd, 0f), ForceMode2D.Impulse);
@@ -49,13 +48,6 @@ public class BirdMovement : MonoBehaviour
             }
 			else
 			{
-                /*
-                if (rigidBody2D.position.y < birdVerticalPosition)
-                {
-                    // transform.eulerAngles = Vector3.forward * -85;
-                    birdTiltedUpwards = false;
-                }
-                */
                 if (!Input.GetButton("Fire1"))
                 {
                     pressed = false;

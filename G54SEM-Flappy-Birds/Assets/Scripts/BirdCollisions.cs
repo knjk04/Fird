@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class BirdCollisions : MonoBehaviour 
 {
@@ -9,6 +6,7 @@ public class BirdCollisions : MonoBehaviour
     // only want to play the collision sound effect once
     private bool collisionSoundEffectPlayed = false;
 
+    // function handles when bird collides with objects
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(CheckIfScoreBox(collision.gameObject.tag))
