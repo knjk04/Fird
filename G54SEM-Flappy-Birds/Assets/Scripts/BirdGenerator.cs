@@ -23,12 +23,14 @@ public class BirdGenerator : MonoBehaviour
         UpdateBirdSprite();
 	}
 
+    /// <summary>
+    /// Function renders a random bird sprite so colour is different each time game starts.
+    /// </summary>
     public void UpdateBirdSprite()
     {
         // Note: the Random.Range that returns an int is not maximally inclusive
         int random = Random.Range(0, 3);
-        Debug.Log("random = " + random);
-
+        // Render sprite based on random number generated
         switch(random)
         {
             case 0:

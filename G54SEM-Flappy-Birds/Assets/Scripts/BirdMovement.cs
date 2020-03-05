@@ -1,50 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BirdMovement : MonoBehaviour
 {
 	// ensure these are set in the inspector
+
 	public Rigidbody2D rigidBody2D;
-    //public float speed;
-    //public float birdVerticalVelocity;
     public AudioSource flap;
-
-    private bool birdTiltedUpwards;
-    private float birdVerticalPosition;
-
-    //public GameManager GameController;
-
     private Vector3 birdTransform;
-    //private Quaternion BirdRotation;
-
-    //private float rotationSpeed = 1f;
+    private bool mousePressed = false;
+    private bool birdTiltedUpwards;
 
     public void Start() 
 	{
+        // Initialise bird direction boolean at start of game
         birdTiltedUpwards = false;
+        // Initialisation of flat vector for position reset
         birdTransform = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
     private void FixedUpdate()
     {
-
-        //float vertical = Input.GetAxis("Horizontal");
-
         if (!GameManager.gameInstance.IsGameOver())
         {
-            // move bird up when user presses
-            if (Input.GetButton("Fire1"))
+            // Move bird up when user presses right mouse button
+            // Only executes once on each button press
+            if (Input.GetButton("Fire1") && !mousePressed)
             {
-				//Debug.Log("I believe I can fly");
-                
-                rigidBody2D.AddForce(new Vector3(0f, 0.6f, 0f), ForceMode2D.Impulse);
+                mousePressed = true;
 
-				birdVerticalPosition = rigidBody2D.position.y;
+                MoveOnInput(rigidBody2D); 
 
                 flap.Play();
 
-                // if bird is falling, change direction
+                // If bird is falling, change direction
                 if (!birdTiltedUpwards)
                 {
                     // transform.eulerAngles = Vector3.forward * 25;
@@ -53,21 +41,39 @@ public class BirdMovement : MonoBehaviour
             }
 			else
 			{
-                if (rigidBody2D.position.y < birdVerticalPosition)
+                // Resets pressed to false on button up
+                if (!Input.GetButton("Fire1"))
                 {
-                    // transform.eulerAngles = Vector3.forward * -85;
-                    birdTiltedUpwards = false;
+                    mousePressed = false;
                 }
             }
+            
         }
     }
 
+    /// <summary>
+    /// Resets bird to flat ready for start.
+    /// </summary>
     public void ResetBird()
     {
         gameObject.transform.position = birdTransform;
-        // transform.rotation = Quaternion.identity;
-        
     }
 
 
+    /// <summary>
+    /// Handles input from user and moves bird accordingly.
+    /// </summary>
+    /// <param name="birdRigidBody">Bird sprite rigidbody.</param>
+    public void MoveOnInput(Rigidbody2D birdRigidBody)
+    {
+        float verticalSpeedAdd = 4.0f;
+        Vector3 v = birdRigidBody.velocity;
+        birdRigidBody.AddForce(-v, ForceMode2D.Impulse);
+        birdRigidBody.AddForce(new Vector3(0f, verticalSpeedAdd, 0f), ForceMode2D.Impulse);
+
+        if (flap != null)
+        {
+            flap.Play();
+        }      
+    }
 }

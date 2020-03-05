@@ -1,66 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     // single instance
     public static GameManager gameInstance;
+    public BirdGenerator birdGenerator;
+    public BirdCollisions birdCollisions;
+    public BirdMovement bird;
 
     public GameObject gameOverPanel;
-    
-    // score text
+    public GameObject pipeGenerator;
+    private GameObject pipeScript;
+    public GameObject scorePanel;
+    public GameObject getReadyPanel;
+    public GameObject goldMedal;
+    public Rigidbody2D birdRigidBody2D;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverScoreText;
     public TextMeshProUGUI highScoreText;
-    public BirdMovement bird;
-
-    public GameObject pipeGenerator;
-    private GameObject pipeScript;
- 
-    public GameObject scorePanel;
-    public GameObject getReadyPanel;
-
-    public Rigidbody2D birdRigidBody2D;
-
-    private bool gameOver = false;
-
-    // used to handle start of game event
-    private bool gameStarted = false;
-    public AudioSource backgroundAudio;
-
-    private int playerScore = 0;
-    private int highScore = 0;
-    private bool firstGame = true;
-
-    public AudioSource pointSound;
-
     public Button playButton;
 
-    public GameObject goldMedal;
+    public AudioSource pointSound;
+    public AudioSource backgroundAudio;
 
-    //public GameObject birdGenerator;
-    public BirdGenerator birdGenerator;
+    private bool firstGame = true;
+    private bool gameOver = false;
+    private bool gameStarted = false;
+    private int playerScore = 0;
+    private int highScore = 0;
 
     void Start()
     {
-        gameOverScoreText.enabled = false;
-        highScoreText.enabled = false;
-
-        if (backgroundAudio != null)
-        {
-            backgroundAudio.Play();
-        }
-        else
-        {
-            Debug.Log("Background audio is null");
-        }
+        InitialSetup();
     }
 
-    void Awake()
+    public void Awake()
     {
         if (gameInstance != null && gameInstance != this)
         {
@@ -79,12 +55,39 @@ public class GameManager : MonoBehaviour
         // Start game on click 
         if (!gameOver && (Input.GetButtonDown("Fire1") && gameStarted == false))
         {
-            Debug.Log("User is ready");
-            SetupGame();
+            PostReadySetup();
         }
     }
 
-    void SetupGame()
+    /// <summary>
+    /// Called when script is created, start of game initialisation.
+    /// </summary>
+    public void InitialSetup()
+    {
+        gameOverScoreText.enabled = false;
+        highScoreText.enabled = false;
+        PlayBackgroundAudioOnGameStart();
+    }
+
+    /// <summary>
+    /// Plays background music on game start.
+    /// </summary>
+    public void PlayBackgroundAudioOnGameStart()
+    {
+        if (backgroundAudio != null)
+        {
+            backgroundAudio.Play();
+        }
+        else
+        {
+            Debug.LogError("Background audio is null");
+        }
+    }
+
+    /// <summary>
+    /// Setup function used to set up game once user has clicked the ready button.
+    /// </summary>
+    void PostReadySetup()
     {
         playButton.gameObject.SetActive(false);
 
@@ -96,24 +99,18 @@ public class GameManager : MonoBehaviour
         // Introduce gravity and allow bird to fall
         birdRigidBody2D.gravityScale = 1f;
 
-        //if (backgroundAudio != null)
-        //{
-        //    backgroundAudio.Play();
-        //}
-        //else
-        //{
-        //    Debug.Log("Background audio is null");
-        //}
-
         // Start pipe generation
         Vector2 spawnPosition = new Vector2(0.0f, 0.0f);
         Quaternion rotation = Quaternion.identity;
         pipeScript = Instantiate(pipeGenerator, spawnPosition, rotation);
     }
 
+    /// <summary>
+    /// Function handles resetting the game to start state.
+    /// </summary>
     private void RestartGame()
     {
-        Debug.Log("GameOver panel should not showing");
+        // UI components update
         gameOverPanel.SetActive(false);
         getReadyPanel.SetActive(true);
         scorePanel.SetActive(true);
@@ -121,34 +118,49 @@ public class GameManager : MonoBehaviour
 
         gameOverScoreText.enabled = false;
         highScoreText.enabled = false;
-        //GoldMedal.enabled = false;
         goldMedal.SetActive(false);
 
+        // Reset bird position
         bird.ResetBird();
         birdRigidBody2D.gravityScale = 0f;
 
-        playerScore = 0;
+        ResetScore();
+
         scoreText.text = playerScore.ToString();
         scoreText.enabled = true;
-
+        
         firstGame = false;
 
+        // Randomly update bird sprite
         birdGenerator.UpdateBirdSprite();
 
+        birdCollisions.ResetCollisionSoundEffectPlayed();
 
         gameOver = false;
     }
 
+    /// <summary>
+    /// Function resets score to 0.
+    /// </summary>
+    public void ResetScore()
+    {
+         playerScore = 0;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public void RunGame()
     {
-        Debug.Log("Run game");
         RestartGame();
     }
 
-    public void AddScore()                          
+    /// <summary>
+    /// Handles logic when user gets a point.
+    /// </summary>
+    public void UpdateScore()                          
     {
-        Debug.Log("Incrementing score. Score before = " + playerScore + ", score now = " + (playerScore + 1));
-        playerScore++;
+        AddScore();
         // Changes score displayed to user
         scoreText.text = playerScore.ToString();
 
@@ -158,39 +170,54 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Point sound is null");
+            Debug.LogError("Point sound is null");
         }
-        
-
     }
 
+    /// <summary>
+    /// Getter for int playerScore.
+    /// </summary>
+    /// <returns></returns>
+    public int GetScore()
+    {
+        return playerScore;
+    }
+
+    /// <summary>
+    /// Function increments int playerScore.
+    /// </summary>
+    public void AddScore()
+    {
+        playerScore++;
+    }
+
+    /// <summary>
+    /// Handles logic and UI updates when game has ended.
+    /// </summary>
     public void EndGame()                          
     {
-        Debug.Log("in end game");
-        
-
         // Handles logic when game finishes (bird has crashed)
         gameOverPanel.SetActive(true);
         gameOver = true;
         gameStarted = false;
+
         // Stop pipe creation script
         Destroy(pipeScript);
         scoreText.enabled = false;
 
-       
+        // Show game over UI objects and score
         gameOverScoreText.text = scoreText.text;
         gameOverScoreText.enabled = true;
         highScoreText.enabled = true;
 
+        // Updates score if required
         if (SetHighScore())
         {
-            //GoldMedal.enabled = true;
             if (!firstGame)
             {
                 goldMedal.SetActive(true);
             }
  
-            Debug.Log("Show the medal");
             highScoreText.text = scoreText.text;
         }
         else
@@ -200,7 +227,11 @@ public class GameManager : MonoBehaviour
         playButton.gameObject.SetActive(true);
     }
 
-    bool SetHighScore()
+    /// <summary>
+    /// Function updates high score if required.
+    /// </summary>
+    /// <returns>boolean to represent whether high score has been updated.</returns>
+    public bool SetHighScore()
     {
         if (highScore < playerScore)
         {
@@ -210,9 +241,58 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Getter for boolean gameOver.
+    /// </summary>
+    /// <returns>gameOver boolean</returns>
     public bool IsGameOver()
     {
-        //Debug.Log("GameOver = " + GameOver);
         return gameOver;
+    }
+
+    /// <summary>
+    /// Getter for playerScore.
+    /// </summary>
+    /// <returns>playerScore boolean</returns>
+    public int GetPlayerScore()
+    {
+        return playerScore;
+    }
+
+    /// <summary>
+    /// Getter for highscore int.
+    /// </summary>
+    /// <returns>highScore int</returns>
+    public int GetHighScore()
+    {
+        return highScore;
+    }
+
+    // This should only be called if the bird collides with the ceiling, ground or one of the pipes
+    /// <summary>
+    /// Setter for gameOver boolean.
+    /// </summary>
+    public void SetGameOver()
+    {
+        gameOver = true;
+    }
+
+    /// <summary>
+    /// Getter for AudioSource backGroundAudio.
+    /// </summary>
+    /// <returns>backGroundAudio AudioSource</returns>
+    public AudioSource GetBackgroundAudioSource()
+    {
+        return backgroundAudio;
+    }
+
+    // For use only in the test suite
+    /// <summary>
+    /// Setter for AudioSource. Used with testing suite.
+    /// </summary>
+    /// <param name="backgroundAudio">AudioSource passed from testing suite.</param>
+    public void SetAudioSource(AudioSource backgroundAudio)
+    {
+        this.backgroundAudio = backgroundAudio;
     }
 }

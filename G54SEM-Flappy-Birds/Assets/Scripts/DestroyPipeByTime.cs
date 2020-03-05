@@ -1,23 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DestroyPipeByTime : MonoBehaviour 
 {
+    private GameObject pipe;
+    public GameObject parentObject;
+    public int pipeLifeSeconds = 8;
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
+        DestroyPipes();
+    }
+
+    /// <summary>
+    /// Function handles destorying the pipes
+    /// </summary>
+    public void DestroyPipes()
+    {
+        SaveParentObject();
+        // Destroys all pipes when game ends
         if (GameManager.gameInstance.IsGameOver())
         {
-            //Debug.Log("Are you dead yet?");
-            Destroy(gameObject);
-            //Bird.DestroyBird();
+            DestroyPipeImmediately();
         }
         else
         {
-            //Debug.Log("Game is not over");
-            Destroy(gameObject, 8);
+            // Pipe object destroyed after 8 seconds
+            Destroy(pipe, pipeLifeSeconds);
         }
+    }
+
+    /// <summary>
+    /// Function makes a copy of pipe parent object.
+    /// </summary>
+    public void SaveParentObject()
+    {
+        pipe = parentObject;
+    }
+
+    /// <summary>
+    /// Function destroys pipes immediately
+    /// </summary>
+    public void DestroyPipeImmediately()
+    {
+        DestroyImmediate(pipe, true);
     }
 }
