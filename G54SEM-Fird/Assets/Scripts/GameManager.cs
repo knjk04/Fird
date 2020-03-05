@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Screen.SetResolution(600, 900, false);
         InitialSetup();
     }
 

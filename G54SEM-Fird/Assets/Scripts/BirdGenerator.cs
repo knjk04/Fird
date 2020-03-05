@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 using UnityEngine;
+//using UnityEngine.Animations;
 
 public class BirdGenerator : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class BirdGenerator : MonoBehaviour
     public Sprite blueBird;
     public Sprite redBird;
     public Sprite yellowBird;
-    public AnimatorController blueAnim;
-    public AnimatorController redAnim;
-    public AnimatorController yellowAnim;
+    public RuntimeAnimatorController blueAnim;
+    public RuntimeAnimatorController redAnim;
+    public RuntimeAnimatorController yellowAnim;
 
 
 
