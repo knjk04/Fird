@@ -1,6 +1,6 @@
 # Fird
 
-<img src="https://github.com/knjk04/Fird/blob/master/media/start.png" height="448" width="297">
+![Gameplay screenshots](media/showcase.png)
 
 Fird is a Flappy Birds clone made for a university group project.
 
