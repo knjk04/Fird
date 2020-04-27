@@ -8,7 +8,7 @@ Made using Unity 2018.2.0f2
 # Setup
 
 Windows:
-- Download the executable in the build folder: https://github.com/knjk04/Fird/blob/master/G54SEM-Fird/Build/G54SEM-Fird.exe
+- Download the executable in the build folder: https://github.com/knjk04/Fird/blob/master/Fird/Build/G54SEM-Fird.exe
 
 macOS and Linux:
 - Run the project from within Unity
