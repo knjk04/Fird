@@ -1,5 +1,6 @@
 # Fird
 
+![Fird start screen](media/fird-start.png)
 
 Fird is a Flappy Birds clone made for a university group project.
 
