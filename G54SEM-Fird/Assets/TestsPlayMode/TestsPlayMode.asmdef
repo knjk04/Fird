@@ -1,9 +1,0 @@
-﻿{
-    "name": "TestsPlayMode",
-    "references": [
-        "ScriptAssembly"
-    ],
-    "optionalUnityReferences": [
-        "TestAssemblies"
-    ]
-}
